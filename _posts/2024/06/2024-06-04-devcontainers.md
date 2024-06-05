@@ -4,7 +4,7 @@ date:   2024-06-04
 categories: productivity
 tags: [ vscode, docker ]
 header:
-  image: "/assets/images/2024/06/2024-06-04-teaser.jpg"
+  image: "/assets/images/2024/06/2024-06-04-teaser.png"
 ---
 
 If you've ever had to rebuild or significantly upgrade your machine in the middle of a project, then you will recognize the pain.  You find that some versions of your favorite tools have changed, or you don't remember the specific build command or tool download location for that one thing you rely on.  [Dev containers](https://containers.dev) was designed with this in mind.  It's the technology behind [Codespaces](https://github.com/features/codespaces) and supported in Visual Studio Code.  In this tutorial, I'll walk through the steps to create your own dev container specification so you can work on your project whenever and wherever you want.
@@ -41,22 +41,22 @@ Let's look at my `devcontainer.json` file:
 
 {% highlight json %}
 {
-	"name": "Jekyll",
-	"image": "mcr.microsoft.com/devcontainers/jekyll:2-bullseye",
-	"features": {
-		"ghcr.io/devcontainers/features/azure-cli:1": {
-			"installBicep": true
-		},
-		"ghcr.io/devcontainers/features/common-utils:2": {},
-		"ghcr.io/devcontainers/features/git:1": {},
-		"ghcr.io/devcontainers/features/github-cli:1": {},
-		"ghcr.io/devcontainers/features/node:1": {},
-		"ghcr.io/devcontainers-contrib/features/actions-runner:1": {},
-		"ghcr.io/stuartleeks/dev-container-features/azure-cli-persistence:0": {},
-		"ghcr.io/azure/azure-dev/azd:0": {}
-	},
-	"forwardPorts": [ 4000 ],
-	"postCreateCommand": "jekyll --version"
+    "name": "Jekyll",
+    "image": "mcr.microsoft.com/devcontainers/jekyll:2-bullseye",
+    "features": {
+        "ghcr.io/devcontainers/features/azure-cli:1": {
+            "installBicep": true
+        },
+        "ghcr.io/devcontainers/features/common-utils:2": {},
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {},
+        "ghcr.io/devcontainers/features/node:1": {},
+        "ghcr.io/devcontainers-contrib/features/actions-runner:1": {},
+        "ghcr.io/stuartleeks/dev-container-features/azure-cli-persistence:0": {},
+        "ghcr.io/azure/azure-dev/azd:0": {}
+    },
+    "forwardPorts": [ 4000 ],
+    "postCreateCommand": "jekyll --version"
 }
 {% endhighlight %}
 
