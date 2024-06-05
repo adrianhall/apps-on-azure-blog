@@ -4,7 +4,7 @@
     "apps-on-azure-blog": {
       "appLocation": ".",
       "outputLocation": "_site",
-      "appBuildCommand": "jekyll build",
+      "appBuildCommand": "JEKYLL_ENV=production bundle exec jekyll build",
       "run": "bundle exec jekyll serve --livereload",
       "appDevserverUrl": "http://localhost:4000",
       "appName": "apps-on-azure-site",
