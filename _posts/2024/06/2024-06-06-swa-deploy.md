@@ -244,8 +244,6 @@ azd up
 
 The first time through, you will be prompted for an environment name (which can be anything you want), a subscription (select the subscription you want to deploy into), and a location (pick one of the five regions available to Azure Static Web Apps).  You won't be prompted for these again.  The information is stored in a `.azure` directory within your project.
 
-> You probably want to add the `.azure` directory to your `.gitignore` file so you don't check in the private information to your repository.
-
 ## Method 3: GitHub Actions
 
 I've got my code checked into a GitHub repository, so it would be really nice if I had a GitHub Action that deployed my code whenever I checked into the main branch.  There are two potential GitHub Actions I can utilize here:
@@ -293,6 +291,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+
+      - name: Install Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+            ruby-version: '3.1.3'
+            bundler-cache: true
+
+      - name: Build Site
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
 
       - name: Log in with Azure (Federated Credentials)
         if: ${{ env.AZURE_CLIENT_ID != '' }}
@@ -346,6 +355,9 @@ Before I can use this action, I need to establish some credentials for Azure in 
 {% highlight bash %}
 azd pipeline config
 {% endhighlight %}
+
+The command will ask if you want to push your local changes (say yes) and then it will display the link to the actions.  Your action will already be running, but it will likely fail.
+
 
 ## Cleaning up resources
 
