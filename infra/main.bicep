@@ -6,6 +6,9 @@ param environmentName string
 @description('The name of the Azure region that will be used for the deployment.')
 param location string
 
+@description('The name of the DNS zone that will be created')
+param zoneName string = 'apps-on-azure.net'
+
 var resourceToken = uniqueString(subscription().subscriptionId, environmentName, location)
 var tags = { 'azd-env-name': environmentName}
 
@@ -23,6 +26,16 @@ module swa 'br/public:avm/res/web/static-site:0.3.0' = {
     location: location
     sku: 'Free'
     tags: union(tags, { 'azd-service-name': 'web' })
+  }
+}
+
+module dnszone 'br/public:avm/res/network/dns-zone:0.3.0' = {
+  name: 'dnszone-${resourceToken}'
+  scope: rg
+  params: {
+    name: zoneName
+    location: location
+    tags: tags
   }
 }
 
