@@ -1,3 +1,5 @@
+name: Deploy Blog
+
 on:
   workflow_dispatch:
   push:
@@ -38,7 +40,7 @@ jobs:
         run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
-          
+
       - name: Log in with Azure (Federated Credentials)
         if: ${{ env.AZURE_CLIENT_ID != '' }}
         run: |
