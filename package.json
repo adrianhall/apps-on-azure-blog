@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "build": "swa build",
+    "dev": "swa start"
+  },
   "devDependencies": {
     "@azure/static-web-apps-cli": "^1.1.8"
   }

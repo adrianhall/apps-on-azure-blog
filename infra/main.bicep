@@ -19,7 +19,7 @@ module swa 'br/public:avm/res/web/static-site:0.3.0' = {
   name: 'swa-${resourceToken}'
   scope: rg
   params: {
-    name: 'swa-${environmentName}'
+    name: '${environmentName}-web-${resourceToken}'
     location: location
     sku: 'Free'
     tags: union(tags, { 'azd-service-name': 'web' })

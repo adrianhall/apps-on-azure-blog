@@ -62,18 +62,8 @@ baidu_site_verification  :
 
 # Social Sharing
 twitter:
-  username               :
-facebook:
-  username               :
-  app_id                 :
-  publisher              :
+  username               : AppsOnAzureBlog
 og_image                 : *teaser
-# For specifying social profiles
-# - https://developers.google.com/structured-data/customize/social-profiles
-#social:
-#  type                   : Person
-#  name                   : *title
-#  links: # An array of links to social media profiles
 
 # Analytics
 analytics:

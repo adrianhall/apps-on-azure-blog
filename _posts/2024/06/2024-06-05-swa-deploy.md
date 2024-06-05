@@ -1,10 +1,10 @@
 ---
 title:  "Deploying Azure Infrastructure three ways"
-date:   2024-06-06
+date:   2024-06-05
 categories: infrastructure
 tags: [ bicep, azd, azure, staticwebapp ]
 header:
-  image: "/assets/images/2024/06/2024-06-06-teaser.png"
+  image: "/assets/images/2024/06/2024-06-05-banner.png"
 ---
 
 For most developers, dealing with the infrastructure part of the job is hard.  I like to say "give me a database and a web site" and prefer not to get into the other requirements.  My web sites and other cloud projects (including this one) are pretty open. So, what's the minimum I need to know to deploy stuff on Azure?
@@ -41,7 +41,7 @@ Some people like to have control, so this method gives me the ability to control
 
 ### Prerequisites
 
-I need a few tools.  If you took a look at [my last post]({% post_url 2024-06-04-devcontainers %}), you'll note I have all these tools in my dev container.  The links are to the installation page for the tool and don't include any tooling you need to build your application.  If you are deploying a Jekyll site, for example, you need to install Ruby and Jekyll before starting as well.  However, since you are already developing code, you'll have those tools installed.
+I need a few tools.  If you took a look at [my last post]({% post_url 2024/06/2024-06-04-devcontainers %}), you'll note I have all these tools in my dev container.  The links are to the installation page for the tool and don't include any tooling you need to build your application.  If you are deploying a Jekyll site, for example, you need to install Ruby and Jekyll before starting as well.  However, since you are already developing code, you'll have those tools installed.
 
 * [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli)
 * [NodeJS](https://nodejs.org)
@@ -76,7 +76,7 @@ The main thing to do here is to configure a `staticwebapp.config.json` file.  Th
 }
 {% endhighlight %}
 
-This tells Static Web Apps where the index page that I want to use is located.  Don't forget to check this file into source code control.
+This tells Static Web Apps where the index page that I want to use is located.  Check this file into source code control.
 
 ### Deploy the code with the SWA CLI
 
@@ -87,11 +87,11 @@ npm add -D @azure/static-web-apps-cli
 npx swa init --yes
 {% endhighlight %}
 
-> Don't forget to add the `package.json` file to the project and ensure that `node_modules` is added to the `.gitignore` file (or equivalent).
+> Don't forget to add the `package.json` file to source code control and ensure that `node_modules` is added to the `.gitignore` file (or equivalent).
 
 The initialization tries to detect what is application is based on and thus where it can expect the output or distributable files.  My build process is `bundle exec jekyll build` and the files are placed in `_site` after the build.  Check out the output of the `swa init` command:
 
-![Screenshot of the swa init output](/assets/images/2024/06/2024-06-06-swa-init-output.png)
+![Screenshot of the swa init output](/assets/images/2024/06/2024-06-05-swa-init-output.png)
 
 Now I can deploy the code:
 
@@ -153,7 +153,7 @@ This is relatively straight forward.  There is an "environment name" - this is a
 
 Now, let's take a look at the bicep code.  I've removed all the comments from this code so that it reads well inside the blog, but you should definitely comment your code.
 
-{% highlight bicep %}
+{% highlight bicep linenos %}
 targetScope = 'subscription'
 
 @description('The environment name - a unique string that is used to identify THIS deployment.')
@@ -202,7 +202,7 @@ I'm using a module from the [Azure Verified Modules](https://aka.ms/AVM) collect
 
 The `azure.yaml` file is used by the Azure Developer CLI to link the resources deployed in the infrastructure step to the code that needs to be deployed on them.  You need to give each resources that has code deployed to it a unique name and set the `azd-service-name` tag to that name.  In my case, I've tagged my static web app with the name `web`.  Let's look at the `azure.yaml` file:
 
-{% highlight yaml %}
+{% highlight yaml linenos %}
 # yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
 
 name: apps-on-azure-blog
@@ -242,7 +242,7 @@ And then run the end-to-end deployment:
 azd up
 {% endhighlight %}
 
-The first time through, you will be prompted for an environment name (which can be anything you want), a subscription (select the subscription you want to deploy into), and a location (pick one of the five regions available to Azure Static Web Apps).  You won't be prompted for these again.  The information is stored in a `.azure` directory within your project.
+You are prompted for additional information when running this for the first time (the environment name, subscription, and location).  You won't be prompted for these again.  The information is stored in a `.azure` directory within your project.
 
 ## Method 3: GitHub Actions
 
@@ -253,7 +253,7 @@ I've got my code checked into a GitHub repository, so it would be really nice if
 
 Of these two, I prefer the Azure Developer CLI method.  The Azure Developer CLI method allows me to set up the deployment first (see Method 2 above) and then add the GitHub Action later on.  It also handles my infrastructure deployment and can deploy additional resources if necessary. If my code runs into a problem, I can diagnose it outside of the GitHub Actions mechanism, which means I don't need to use a runner.
 
-The Static Web Apps Deploy method has the advantage that you don't need to set up a service principal in Entra ID so that your GitHub Action can communicate with Azure.  Instead, you need a deployment token that you can retrieve from the Azure Portal.  You can also set up the deployment from the Azure portal by linking the GitHub repository to your Static Web Apps resource.
+The Static Web Apps Deploy method has the advantage that you don't need to set up a service principal in Entra ID so that your GitHub Action can communicate with Azure.  Instead, you need a deployment token that you can retrieve from the Azure Portal.  You can also set up the deployment from the Azure portal by linking the GitHub repository to your Static Web Apps resource. In addition, you can automatically deploy preview sites based on pull requests, giving you an automatic mechanism for previewing code before it is merged into production.
 
 So, let's walk through setting up a GitHub Action using the Azure Developer CLI method.
 
@@ -261,7 +261,8 @@ First, create the `.github/workflows` directory. This is where the GitHub Action
 
 Next, create a workflow in that directory.  I called mine `deploy-blog.yml`:
 
-{% highlight yaml %}
+{% highlight yaml linenos %}
+{% raw %}
 on:
   workflow_dispatch:
   push:
@@ -339,39 +340,50 @@ jobs:
           AZURE_ENV_NAME: ${{ vars.AZURE_ENV_NAME }}
           AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
           AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+{% endraw %}
 {% endhighlight %}
 
 Let's go through this file line by line:
 
 * **Lines 1-5** dictate when this action will be executed - in this case, either manually or when I push a change to the main branch.
 * **Lines 7-9** indicate what permissions are required.
-* **Lines 11-66** are the actual steps needed to deploy the code.
-  * **Lines 20-29** check out the code and install the necessary tools.
-  * **Lines 39-52** sign in to Azure using the credentials we've provided.  There are two mechanisms supported here.
-  * **Lines 54-66** provision the resources, then deploy the code.
+* **Lines 11-77** are the actual steps needed to deploy the code.
+  * **Lines 13-18** set up the environment for the deployment.
+  * **Lines 20-21** checks out the code.
+  * **Lines 23-35** install tools necessary for the deployment.
+  * **Lines 37-40** build the code for later deployment.
+  * **Lines 42-63** sign in to Azure using the credentials I've provided in the environment.  There are two versions - one for a service principal and one for federated credentials.
+  * **Lines 65-77** provision the resources, then deploy the code.
 
-Before I can use this action, I need to establish some credentials for Azure in my GitHub repository.  These are stored as secrets and should be refreshed on a regular basis for key rotation.  Use the following command to establish those credentials:
+Before I can use this action, I need to establish some credentials for Azure in my GitHub repository.  These are stored as secrets. Use the following command to establish those credentials:
 
 {% highlight bash %}
 azd pipeline config
 {% endhighlight %}
 
-The command will ask if you want to push your local changes (say yes) and then it will display the link to the actions.  Your action will already be running, but it will likely fail.
+This command will copy your current environment to the GitHub Actions, log into Azure, and store those federated credentials as secrets with the GitHub Action as well.  I hope you named your environment the way you wanted to before you ran the command!
 
+The command will ask if you want to push your local changes (say yes) and then it will display the link to the actions.  You can (and should) click on the actions link and see if your action was successful.
 
 ## Cleaning up resources
 
 If you've been following along, you probably don't want the resources you created to stick around.  Even though the Azure Static Web Apps SKU is free, you only have 10 of them and you may want to use it for something else.  To clean up the resources, just delete the resource group:
 
-```bash
+{% highlight bash %}
 az group delete -n apps-on-azure
-```
+azd down
+{% endhighlight %}
 
-This will take a couple of minutes.
+Each command will take a couple of minutes.  If you do run `azd down`, make sure you also disable the GitHub Action in your repository and remove the secrets and variables that were stored.
 
 ## Final thoughts
 
-I've also used Netlify and Vercel, and Azure Static Web Apps stacks up well against these guys, including the price point (you can't argue with free!). If your company is already on Azure or requires more robust private networking, Azure Static Web Apps supports that too.  Even if you are doing this on your own dime, having the backing of one of the major clouds is a benefit.
+So, which method should you use?
+
+* For **one-off deployments** and **tweaks to existing resources**, I reach for the Azure CLI and associated tools.  You wouldn't stress about using the Azure portal either - it's a one off - the method is really not important.
+* For **repeatable deployments** and **continuous deployments** via GitHub Actions (or any other pipeline runner, including Azure Pipelines), I use the Azure Developer CLI.  It's a single command to spin up a development environment that is separate from my production environment, and it's easy to integrate into GitHub Actions.
+
+I've now completed the next step in publishing this blog.  In [the first step]({% post_url 2024/06/2024-06-04-devcontainers %}) I set up my local environment inside a dev container.  In this step, I've created my site in the Azure cloud and I am automatically deploying my code to the site when I check in new blog posts.  Next time, I'm going to investigate what it takes to go production.
 
 ## Further reading
 
