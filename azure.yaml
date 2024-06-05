@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+name: apps-on-azure-blog
+services:
+  web:
+    project: .
+    dist: _site
+    language: js
+    host: staticwebapp
