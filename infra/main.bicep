@@ -39,5 +39,18 @@ module dnszone 'br/public:avm/res/network/dns-zone:0.3.0' = {
   }
 }
 
+module wwwdomain 'modules/swa-custom-subdomain.bicep' = {
+  name: 'www-custom-domain-${resourceToken}'
+  scope: rg
+  params: {
+    name: 'www'
+    zoneName: dnszone.outputs.name
+    staticWebAppName: swa.outputs.name
+  }
+}
+
 output AZURE_LOCATION string = location
-output SERVICE_URL string = 'https://${swa.outputs.defaultHostname}'
+output SERVICE_URL string[] = [
+  'https://${swa.outputs.defaultHostname}'
+  wwwdomain.outputs.domainName
+]
