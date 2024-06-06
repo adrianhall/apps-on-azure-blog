@@ -22,5 +22,23 @@ resource apexDomain 'Microsoft.Web/staticSites/customDomains@2023-12-01' = {
   }
 }
 
-output domainProperties object = apexDomain.properties
+resource apexDnsRecord 'Microsoft.Network/dnsZones/A@2023-07-01-preview' = {
+  name: '@'
+  parent: dnsZone
+  properties: {
+    TTL: 3600
+    targetResource: {
+      id: staticSite.id
+    }
+  }
+}
+
+module domainValidationRecord './domain-validation-record.bicep' = {
+  name: 'domain-validation-${uniqueString(zoneName, staticWebAppName, resourceGroup().location)}'
+  params: {
+    zoneName: dnsZone.name
+    validationToken: apexDomain.properties.?validationToken
+  }
+}
+
 output domainName string = dnsZone.name
