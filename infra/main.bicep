@@ -49,6 +49,35 @@ module wwwdomain 'modules/swa-custom-domain.bicep' = {
   }
 }
 
+module apexdomain 'modules/swa-apex-domain.bicep' = {
+  name: 'apex-custom-domain-${resourceToken}'
+  scope: rg
+  params: {
+    zoneName: dnszone.outputs.name
+    staticWebAppName: swa.outputs.name
+  }
+}
+
+module customDomainReader 'modules/custom-domain-reader.bicep' = {
+  name: 'custom-domain-reader-${resourceToken}'
+  scope: rg
+  params: {
+    zoneName: apexdomain.outputs.domainName
+    staticWebAppName: swa.outputs.name
+  }
+}
+
+module txtRecord 'modules/txt-record.bicep' = {
+  name: 'txt-record-${resourceToken}'
+  scope: rg
+  params: {
+    zoneName: apexdomain.outputs.domainName
+    validationToken: apexdomain.outputs.domainProperties.validationToken
+  }
+}
+// ERROR: validationToken is not returned as part of the response.
+
+
 output AZURE_LOCATION string = location
 output SERVICE_URL string[] = [
   'https://${swa.outputs.defaultHostname}'
