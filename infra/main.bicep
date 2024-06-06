@@ -34,12 +34,12 @@ module dnszone 'br/public:avm/res/network/dns-zone:0.3.0' = {
   scope: rg
   params: {
     name: zoneName
-    location: location
+    location: 'global'
     tags: tags
   }
 }
 
-module wwwdomain 'modules/swa-custom-subdomain.bicep' = {
+module wwwdomain 'modules/swa-custom-domain.bicep' = {
   name: 'www-custom-domain-${resourceToken}'
   scope: rg
   params: {
@@ -52,5 +52,5 @@ module wwwdomain 'modules/swa-custom-subdomain.bicep' = {
 output AZURE_LOCATION string = location
 output SERVICE_URL string[] = [
   'https://${swa.outputs.defaultHostname}'
-  wwwdomain.outputs.domainName
+  'https://${wwwdomain.outputs.domainName}'
 ]

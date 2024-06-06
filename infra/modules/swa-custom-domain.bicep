@@ -3,7 +3,7 @@ targetScope = 'resourceGroup'
 @description('The name of the subdomain')
 param name string
 
-@description('The host name of the static web app service.')
+@description('The name of the static web app service.')
 param staticWebAppName string
 
 @description('The name of the Azure DNS hosted DNS zone')
@@ -32,7 +32,7 @@ resource customDomain 'Microsoft.Web/staticSites/customDomains@2023-01-01' = {
   name: '${name}.${zoneName}'
   parent: staticSite
   properties: {
-    validationMethod: 'CNAME'
+    validationMethod: 'cname-delegation'
   }
 }
 
