@@ -10,8 +10,11 @@
 # Review documentation to determine if you should use `theme` or `remote_theme`
 # https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#installing-the-theme
 
-theme                  : "minimal-mistakes-jekyll"
-minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+# I've copied the theme files to the local repository.  Using v4.26.1 right now
+#theme                  : "minimal-mistakes-jekyll"
+
+# "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "dark" 
 
 # Site Settings
 locale                   : "en-US"
@@ -21,7 +24,7 @@ subtitle                 : ""
 name                     : &name "Adrian Hall"
 description              : "A blog about building secure and optimized apps for the Azure cloud."
 url                      : ""
-baseurl                  : ""
+baseurl                  : "" # DO NOT SET THIS - it's set at build time
 repository               : "adrianhall/apps-on-azure-blog"
 teaser                   : &teaser "/assets/images/teaser.png"
 logo                     : &logo "/assets/images/logo.png"
@@ -107,42 +110,6 @@ footer:
       icon: "fab fa-fw fa-linkedin"
       url: "https://linkedin.com/in/adrianhall1/"
 
-
-include:
-  - _posts
-  - _pages
-  - categories
-  - tags
-  - posts
-  - index.html
-  - privacy.html
-exclude:
-  - "*.sublime-project"
-  - "*.sublime-workspace"
-  - vendor
-  - .asset-cache
-  - .bundle
-  - .devcontainer
-  - .github
-  - .jekyll-assets-cache
-  - .ruby-lsp
-  - .sass-cache
-  - CHANGELOG
-  - config
-  - infra
-  - Gemfile
-  - Gemfile.lock
-  - LICENSE
-  - log
-  - node_modules
-  - package.json
-  - package-lock.json
-  - README
-  - staticwebapp.config.json
-  - swa-cli.config.json
-  - tmp
-keep_files:
-  - .git
 encoding: "utf-8"
 markdown_ext: "md"
 
@@ -167,10 +134,12 @@ kramdown:
 # Sass/SCSS
 sass:
   sass_dir: _sass
-  style: compressed # https://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+  style: compressed
+  sourcemap: development
+  verbose: true
 
 # Outputting
-permalink: /:categories/:title/
+permalink: /:categories/:year/:year-:month-:day-:title:output_ext
 timezone: US/Pacific # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 # Pagination with jekyll-paginate-v2

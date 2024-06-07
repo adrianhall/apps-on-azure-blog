@@ -1,16 +1,21 @@
 source "https://rubygems.org"
 
 gem "jekyll", "~> 4.3.3"
-gem "minimal-mistakes-jekyll"
+gem "classifier-reborn"
+gem "csv" # No longer bundled with ruby
 
 group :jekyll_plugins do
   gem "jekyll-algolia"
   gem "jekyll-archives"
   gem "jekyll-default-layout"
+  gem "jekyll-feed"
+  gem "jekyll-gist"
+  gem "jekyll-include-cache"
   gem "jekyll-optional-front-matter"
   gem "jekyll-paginate-v2"
   gem "jekyll-relative-links"
   gem "jekyll-seo-tag"
+  gem "jekyll-sitemap"
   gem "jekyll-titles-from-headings"
   gem "jekyll-toc"
   gem "jemoji"
