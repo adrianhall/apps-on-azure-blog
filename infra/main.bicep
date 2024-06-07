@@ -11,6 +11,7 @@ param zoneName string = 'apps-on-azure.net'
 
 var resourceToken = uniqueString(subscription().subscriptionId, environmentName, location)
 var tags = { 'azd-env-name': environmentName}
+var lock = { kind: 'CanNotDelete' }
 
 resource rg 'Microsoft.Resources/resourceGroups@2024-03-01' = {
   name: 'rg-${environmentName}'
@@ -24,7 +25,8 @@ module swa 'br/public:avm/res/web/static-site:0.3.0' = {
   params: {
     name: '${environmentName}-web-${resourceToken}'
     location: location
-    sku: 'Free'
+    lock: lock
+    sku: 'Standard'
     tags: union(tags, { 'azd-service-name': 'web' })
   }
 }
@@ -35,6 +37,7 @@ module dnszone 'br/public:avm/res/network/dns-zone:0.3.0' = {
   params: {
     name: zoneName
     location: 'global'
+    lock: lock
     tags: tags
   }
 }
@@ -55,6 +58,23 @@ module apexdomain 'modules/swa-apex-domain.bicep' = {
   params: {
     zoneName: dnszone.outputs.name
     staticWebAppName: swa.outputs.name
+  }
+}
+
+module budget 'br/public:avm/res/consumption/budget:0.3.3' = {
+  name: 'budget-${resourceToken}'
+  params: {
+    amount: 10
+    name: 'apps-on-azure-budget-${resourceToken}'
+    contactEmails: [
+      'photoadrian@outlook.com'
+    ]
+    location: location
+
+    category: 'Cost'
+    resourceGroupFilter: [ rg.name ]
+    resetPeriod: 'BillingMonth'
+    thresholds: [ 100, 125, 150, 200 ]
   }
 }
 
