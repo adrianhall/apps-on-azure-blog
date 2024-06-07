@@ -18,7 +18,7 @@ This post is part of a sequence showing how to deploy a blog on Azure Static Web
 3. [Configuring Static Web Apps Custom Domains]({% post_url 2024/06/2024-06-07-swa-dns %})
 4. [Taking Static Web Apps to Production]({% post_url 2024/06/2024-06-08-swa-production %})
 
-Today, I'm going to look at three ways to deploy the same thing.  That "thing" is an Azure Static Web App - the same one that is used to host this web site.  I'll look at the techniques and why it is better (or worse) than the others. 
+Today, I'm going to look at three ways to deploy the same thing.  That "thing" is an Azure Static Web App - the same one that is used to host this web site.  I'll look at the techniques and why it is better (or worse) than the others.
 
 Three ways?  Surely, there are more than that!  Why, yes.  There are.  You can use any number of infrastructure as code (IaC) tools, and there are lots of opinions on how to lay out an infrastructure for enterprise use (which I promise to cover in later blog posts).  However, this is early days of the blog, so I don't need much.  It's time to "keep it simple".
 
