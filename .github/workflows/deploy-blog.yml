@@ -66,7 +66,9 @@ jobs:
           AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
       
       - name: Set blog domain name
-        run: azd env set BLOG_DOMAIN_NAME "${{ vars.BLOG_DOMAIN_NAME }}"
+        run: |
+          azd env new ${{ vars.AZURE_ENV_NAME }}
+          azd env set BLOG_DOMAIN_NAME "${{ vars.BLOG_DOMAIN_NAME }}"
         env:
           AZURE_ENV_NAME: ${{ vars.AZURE_ENV_NAME }}
           AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
