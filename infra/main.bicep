@@ -6,6 +6,9 @@ param environmentName string
 @description('The name of the Azure region that will be used for the deployment.')
 param location string
 
+@description('The name of the DNS zone that will be created')
+param zoneName string = 'apps-on-azure.net'
+
 var resourceToken = uniqueString(subscription().subscriptionId, environmentName, location)
 var tags = { 'azd-env-name': environmentName}
 
@@ -26,5 +29,37 @@ module swa 'br/public:avm/res/web/static-site:0.3.0' = {
   }
 }
 
+module dnszone 'br/public:avm/res/network/dns-zone:0.3.0' = {
+  name: 'dnszone-${resourceToken}'
+  scope: rg
+  params: {
+    name: zoneName
+    location: 'global'
+    tags: tags
+  }
+}
+
+module wwwdomain 'modules/swa-custom-domain.bicep' = {
+  name: 'www-custom-domain-${resourceToken}'
+  scope: rg
+  params: {
+    name: 'www'
+    zoneName: dnszone.outputs.name
+    staticWebAppName: swa.outputs.name
+  }
+}
+
+module apexdomain 'modules/swa-apex-domain.bicep' = {
+  name: 'apex-custom-domain-${resourceToken}'
+  scope: rg
+  params: {
+    zoneName: dnszone.outputs.name
+    staticWebAppName: swa.outputs.name
+  }
+}
+
 output AZURE_LOCATION string = location
-output SERVICE_URL string = 'https://${swa.outputs.defaultHostname}'
+output SERVICE_URL string[] = [
+  'https://${swa.outputs.defaultHostname}'
+  'https://${wwwdomain.outputs.domainName}'
+]

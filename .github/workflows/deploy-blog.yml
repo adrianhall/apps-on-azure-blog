@@ -18,6 +18,7 @@ jobs:
       AZURE_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
       AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+      BLOG_DOMAIN_NAME: ${{ vars.BLOG_DOMAIN_NAME }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -64,6 +65,13 @@ jobs:
         env:
           AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
       
+      - name: Set blog domain name
+        run: azd env set BLOG_DOMAIN_NAME "${{ vars.BLOG_DOMAIN_NAME }}"
+        env:
+          AZURE_ENV_NAME: ${{ vars.AZURE_ENV_NAME }}
+          AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
+          AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+          
       - name: Provision Infrastructure
         run: azd provision --no-prompt
         env:
