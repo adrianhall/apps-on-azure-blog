@@ -1,5 +1,5 @@
 ---
-title:  "Going to production with Azure Static Web Apps"
+title:  "Build a Blog: Going to production with Azure Static Web Apps"
 date:   2024-06-08
 categories: productivity
 tags: [ bicep, azd, azure, staticwebapp ]
@@ -42,7 +42,7 @@ So far, my site has been running on the "Free" SKU for Static Web Apps.  This ha
 
 In short, I want to spend the $9/month for a Standard SKU for a production site.  I've adjusted this in my `infra/main.bicep` file (as we'll see at the end).
 
-## Setting the default custom domain
+## Set the default custom domain
 
 Some things are easier to do on the Azure portal.  I now have three domains:
 
@@ -52,13 +52,7 @@ I have not set a default yet, so the auto-generated domain is the default.  Whil
 
 I want to make `apps-on-azure.net` the default domain, so I need to highlight it and click on **Set default**.  
 
-## Monitoring and logging
-
-Every Azure resource has a diagnostics provider.  However, that diagnostics provider does not produce anything unless you configure it to send diagnostic data somewhere.  Normally, that somewhere is a [Log Analytics Workspace](https://learn.microsoft.com/azure/azure-monitor/logs/log-analytics-workspace-overview) - part of Azure Monitor.  You can't report on anything unless you log it first.  I can deal with the dashboards and reporting later on, but I have to start by logging it.
-
-There are two steps to this.  Firstly, I have to add a Log Analytics Workspace resource definition to my bicep file (there's [an AVM module for that](https://github.com/Azure/bicep-registry-modules/tree/main/avm/res/operational-insights/workspace)), then I have to configure the diagnostics settings for the static web app (and Azure DNS zone, if you feel inclined).
-
-## Resource locks
+## Create resource locks
 
 While I am at it, I'm also going to establish resource locks on my critical resources so I don't accidentally delete them.  Let's put all this together and take a look at the `infra\main.bicep` changes:
 

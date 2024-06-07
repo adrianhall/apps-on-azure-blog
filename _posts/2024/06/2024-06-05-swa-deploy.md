@@ -1,5 +1,5 @@
 ---
-title:  "Deploying Azure Infrastructure three ways"
+title:  "Build a Blog: Deploy Azure Infrastructure three ways"
 date:   2024-06-05
 categories: infrastructure
 tags: [ bicep, azd, azure, staticwebapp ]
@@ -372,7 +372,7 @@ This command will copy your current environment to the GitHub Actions, log into 
 
 The command will ask if you want to push your local changes (say yes) and then it will display the link to the actions.  You can (and should) click on the actions link and see if your action was successful.
 
-## Cleaning up resources
+## Clean up resources
 
 If you've been following along, you probably don't want the resources you created to stick around.  Even though the Azure Static Web Apps SKU is free, you only have 10 of them and you may want to use it for something else.  To clean up the resources, just delete the resource group:
 
