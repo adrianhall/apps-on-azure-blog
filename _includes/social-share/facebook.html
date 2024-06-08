@@ -1,0 +1,8 @@
+{% assign onclick = "window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" %}
+{% assign sharetitle = site.data.ui-text[site.locale].share_on_label | default: 'Share on' | append: ' Facebook' %}
+{% assign posttitle = page.title | urlencode %}
+{% assign posturl = page.url | absolute_url | urlencode %}
+
+<a href="https://www.facebook.com/sharer/sharer.php?t={{ posttitle }}&u={{ posturl }}" class="btn btn--facebook" onclick="{{ onclick }}" title="{{ sharetitle }}">
+  <i class="fab fa-fw fa-facebook" aria-hidden="true"></i>
+</a>
