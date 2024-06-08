@@ -1,0 +1,19 @@
+{% assign onclick = "window.open(this.href, 'window', 'left=20,top=20,width=500,height=700,toolbar=1,resizable=1'); return false;" %}
+{% assign pagetitle = page.title | url_encode %}
+{% assign pageurl = page.url | absolute_url | url_encode %}
+<section class="page__share">
+  {% if site.data.ui-text[site.locale].share_on_label %}
+    <h4 class="page__share-title">{{ site.data.ui-text[site.locale].share_on_label | default: "Share on" }}</h4>
+  {% endif %}
+
+  <a href="https://x.com/intent/post?{% if site.twitter.username %}via={{ site.twitter.username | url_encode }}&{% endif %}text={{ pagetitle }}%20{{ pageurl }}" class="btn btn--x-twitter" onclick="{{ onclick }}" title="{{ site.data.ui-text[site.locale].share_on_label | default: 'Share on' }} Twitter"><i class="fab fa-fw fa-x-twitter" aria-hidden="true"></i></a>
+<!--
+  <a href="https://www.facebook.com/sharer/sharer.php?t={{ pagetitle }}&u={{ pageurl }}" class="btn btn--facebook" onclick="{{ onclick }}" title="{{ site.data.ui-text[site.locale].share_on_label | default: 'Share on' }} Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i></a>
+
+  <a href="https://www.reddit.com/submit?url={{ pageurl }}&title={{ pagetitle }}" class="btn btn--reddit" onclick="{{ onclick }}" title="{{ site.data.ui-text[site.locale].share_on_label | default: 'Share on' }}Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ pageurl }}&summary={{ pagetitle }}&source={{ site.baseurl | url_encode }}" class="btn btn--linkedin" onclick="{{ onclick }}" title="{{ site.data.ui-text[site.locale].share_on_label | default: 'Share on' }} LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i></a>
+
+  <a href="https://threads.net/intent/post?text={{ pagetitle }}%20{{ pageurl }}" class="btn btn--threads" onclick="{{ onclick }}" title="{{ site.data.ui-text[site.locale].share_on_label | default: 'Share on' }} Threads"><i class="fab fa-fw fa-threads" aria-hidden="true"></i></a>
+-->
+</section>
