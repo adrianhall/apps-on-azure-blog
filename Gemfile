@@ -3,6 +3,7 @@ source "https://rubygems.org"
 gem "jekyll", "~> 4.3.3"
 gem "classifier-reborn"
 gem "csv" # No longer bundled with ruby
+gem "minimal-mistakes-jekyll", "~> 4.26.1"
 
 group :jekyll_plugins do
   gem "jekyll-algolia"
