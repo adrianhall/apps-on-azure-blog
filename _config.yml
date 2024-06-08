@@ -10,8 +10,11 @@
 # Review documentation to determine if you should use `theme` or `remote_theme`
 # https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#installing-the-theme
 
-theme                  : "minimal-mistakes-jekyll"
-minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+# I've copied the theme files to the local repository.  Using v4.26.1 right now
+#theme                  : "minimal-mistakes-jekyll"
+
+# "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "dark" 
 
 # Site Settings
 locale                   : "en-US"
@@ -21,7 +24,7 @@ subtitle                 : ""
 name                     : &name "Adrian Hall"
 description              : "A blog about building secure and optimized apps for the Azure cloud."
 url                      : ""
-baseurl                  : ""
+baseurl                  : "" # DO NOT SET THIS - it's set at build time
 repository               : "adrianhall/apps-on-azure-blog"
 teaser                   : &teaser "/assets/images/teaser.png"
 logo                     : &logo "/assets/images/logo.png"
@@ -36,7 +39,9 @@ copyright_url            : # "copyright" URL, defaults to site.url
 comments:
   provider               : "disqus"
   disqus:
-    shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+    shortname            : apps-on-azure
+
+# Feeds
 atom_feed:
   path                   : ""
   hide                   : false
@@ -44,21 +49,20 @@ atom_feed:
 # Search Provider Settings
 search                   : true
 search_full_content      : true
-search_provider          : "lunr" # lunr (default), algolia, google
-lunr:
-  search_within_pages    : true
-#algolia:
-#  application_id         : # YOUR_APPLICATION_ID
-#  index_name             : # YOUR_INDEX_NAME
-#  search_only_api_key    : # YOUR_SEARCH_ONLY_API_KEY
-#  powered_by             : # true (default), false
+search_provider          : "algolia" # lunr (default), algolia, google
+# lunr:
+#   search_within_pages    : true
+algolia:
+ application_id         : Y6HMDJXOJ3
+ index_name             : apps_on_azure_blog
+ search_only_api_key    : 08c673d82b4b41dd94046acf02fd338a
+ powered_by             : true
 
 # SEO Related
-google_site_verification :
-bing_site_verification   :
-naver_site_verification  :
-yandex_site_verification :
-baidu_site_verification  :
+# <meta name="google-site-verification" content="bu5kagi3kztMXQW-RMp9uqDZX8Fg8HFjOpkXPFQtNxM" />
+google_site_verification : "bu5kagi3kztMXQW-RMp9uqDZX8Fg8HFjOpkXPFQtNxM"
+# <meta name="msvalidate.01" content="C5876389001CD41CE7D3847DB2E8B93E" />
+bing_site_verification   : "C5876389001CD41CE7D3847DB2E8B93E"
 
 # Social Sharing
 twitter:
@@ -67,11 +71,13 @@ og_image                 : *teaser
 
 # Analytics
 analytics:
-  provider               : false # false (default), "google", "google-universal", "google-gtag", "custom"
+  provider               : "google-gtag"
   google:
-    tracking_id          : ""
+    tracking_id          : "G-E522W359ER"
     anonymize_ip         : false
-
+clarity:
+  enabled                : "true"
+  tracking_id            : "mobv48qck5"
 
 # Site Author
 author:
@@ -104,48 +110,13 @@ footer:
       icon: "fab fa-fw fa-linkedin"
       url: "https://linkedin.com/in/adrianhall1/"
 
-
-# Reading Files
-include:
-  - .htaccess
-  - _pages
-exclude:
-  - "*.sublime-project"
-  - "*.sublime-workspace"
-  - vendor
-  - .asset-cache
-  - .bundle
-  - .jekyll-assets-cache
-  - .sass-cache
-  - assets/js/plugins
-  - assets/js/_main.js
-  - assets/js/vendor
-  - Capfile
-  - CHANGELOG
-  - config
-  - Gemfile
-  - Gruntfile.js
-  - gulpfile.js
-  - LICENSE
-  - log
-  - node_modules
-  - package.json
-  - package-lock.json
-  - Rakefile
-  - README
-  - tmp
-  - /docs # ignore Minimal Mistakes /docs
-  - /test # ignore Minimal Mistakes /test
-keep_files:
-  - .git
-  - .svn
 encoding: "utf-8"
-markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+markdown_ext: "md"
 
 # Conversion
 markdown: kramdown
 highlighter: rouge
-lsi: false
+lsi: true
 excerpt_separator: "\n\n"
 incremental: false
 
@@ -163,10 +134,12 @@ kramdown:
 # Sass/SCSS
 sass:
   sass_dir: _sass
-  style: compressed # https://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+  style: compressed
+  sourcemap: development
+  verbose: true
 
 # Outputting
-permalink: /:categories/:title/
+permalink: /:categories/:year/:year-:month-:day-:title:output_ext
 timezone: US/Pacific # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 # Pagination with jekyll-paginate-v2
@@ -191,6 +164,7 @@ pagination:
 
 # Plugins (previously gems:)
 plugins:
+  - jekyll-algolia
   - jekyll-archives
   - jekyll-feed
   - jekyll-gist
@@ -205,6 +179,7 @@ plugins:
 
 # mimic GitHub Pages with --safe
 whitelist:
+  - jekyll-algolia
   - jekyll-archives
   - jekyll-feed
   - jekyll-gist

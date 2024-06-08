@@ -1,5 +1,5 @@
 ---
-title:  "Deploying Azure Infrastructure three ways"
+title:  "Build a Blog: Deploy Azure Infrastructure three ways"
 date:   2024-06-05
 categories: infrastructure
 tags: [ bicep, azd, azure, staticwebapp ]
@@ -10,6 +10,13 @@ header:
 For most developers, dealing with the infrastructure part of the job is hard.  I like to say "give me a database and a web site" and prefer not to get into the other requirements.  My web sites and other cloud projects (including this one) are pretty open. So, what's the minimum I need to know to deploy stuff on Azure?
 
 <!-- more -->
+
+This post is part of a sequence showing how to deploy a blog on Azure Static Web Apps:
+
+1. [Deploying Azure Static Web Apps]({% post_url 2024/06/2024-06-05-swa-deploy %})
+2. [Configuring Azure DNS]({% post_url 2024/06/2024-06-06-azure-dns %})
+3. [Configuring Static Web Apps Custom Domains]({% post_url 2024/06/2024-06-07-swa-dns %})
+4. [Taking Static Web Apps to Production]({% post_url 2024/06/2024-06-08-swa-production %})
 
 Today, I'm going to look at three ways to deploy the same thing.  That "thing" is an Azure Static Web App - the same one that is used to host this web site.  I'll look at the techniques and why it is better (or worse) than the others.
 
@@ -365,7 +372,7 @@ This command will copy your current environment to the GitHub Actions, log into 
 
 The command will ask if you want to push your local changes (say yes) and then it will display the link to the actions.  You can (and should) click on the actions link and see if your action was successful.
 
-## Cleaning up resources
+## Clean up resources
 
 If you've been following along, you probably don't want the resources you created to stick around.  Even though the Azure Static Web Apps SKU is free, you only have 10 of them and you may want to use it for something else.  To clean up the resources, just delete the resource group:
 

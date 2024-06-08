@@ -19,6 +19,7 @@ jobs:
       AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
       AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
       BLOG_DOMAIN_NAME: ${{ vars.BLOG_DOMAIN_NAME }}
+      ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -38,9 +39,15 @@ jobs:
             bundler-cache: true
 
       - name: Build Site
-        run: bundle exec jekyll build
+        run: bundle exec jekyll build -b ${{ vars.BLOG_DOMAIN_NAME }}
         env:
           JEKYLL_ENV: production
+
+      - name: Build Algolia Index
+        run: bundle exec jekyll algolia
+        env:
+          JEKYLL_ENV: production
+          ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
 
       - name: Log in with Azure (Federated Credentials)
         if: ${{ env.AZURE_CLIENT_ID != '' }}
