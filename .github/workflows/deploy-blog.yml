@@ -39,7 +39,7 @@ jobs:
             bundler-cache: true
 
       - name: Build Site
-        run: bundle exec jekyll build -b ${{ vars.BLOG_DOMAIN_NAME }}
+        run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
 
@@ -71,7 +71,7 @@ jobs:
         shell: pwsh
         env:
           AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
-      
+
       - name: Set blog domain name
         run: |
           azd env new ${{ vars.AZURE_ENV_NAME }}
@@ -80,7 +80,7 @@ jobs:
           AZURE_ENV_NAME: ${{ vars.AZURE_ENV_NAME }}
           AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
           AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
-          
+
       - name: Provision Infrastructure
         run: azd provision --no-prompt
         env:
