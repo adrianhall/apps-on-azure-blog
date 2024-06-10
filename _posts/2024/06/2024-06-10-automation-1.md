@@ -57,10 +57,10 @@ There are a bunch of "platform as a service" options for a data store on Azure, 
 | PostgreSQL  | $14/month          |
 | Redis Cache | $16/month          |
 
-* All prices are located in the "centralus" region at time of writing and does not include data transfer fees.
+* All prices are for resources located in the "centralus" region at time of writing and does not include data transfer fees.
 * See the [pricing page](https://azure.microsoft.com/pricing/) for current pricing and regions.
 
-My data needs are gest handled by a NoSQL database.  I don't need data normalization and my query capabilities don't cross tables.  I think the most complex query is going to be "give me a list of all articles that have not been posted to social media yet."  So I'm going to go with a free-tier Cosmos DB for my data store.  I could also normalize my data, in which case the Azure SQL database would also fit.  I'd also lean towards Azure SQL if I were coding things up in C# with Entity Framework Core.  While EF Core supports CosmosDB, it just works better with a SQL service.
+My data needs are best handled by a NoSQL database.  I don't need data normalization and my query capabilities don't cross tables.  I think the most complex query is going to be "give me a list of all articles that have not been posted to social media yet."  So I'm going to go with a free-tier Cosmos DB for my data store.  I could also normalize my data, in which case the Azure SQL database would also fit.  I'd also lean towards Azure SQL if I were coding things up in C# with Entity Framework Core.  While EF Core supports CosmosDB, it just works better with a SQL service.
 
 Cosmos DB also [provides different APIs for accessing data](https://learn.microsoft.com/azure/cosmos-db/choose-api). You can use the NoSQL query dialect (which is the default), or you can choose from MongoDB, Cassandra, Apache Gremlin, Table storage, or PostgreSQL emulation.  These facets still use the same NoSQL store underneath but emulate the requirements of the access protocol, allowing you to use the default SDK for accessing that database.  Since I'm not integrating Cosmos DB with a third party library, I'm going to use the regular NoSQL dialect.
 
