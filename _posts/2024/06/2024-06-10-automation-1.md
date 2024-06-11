@@ -11,6 +11,8 @@ In my last series, I built this blog, including all the infrastructure and autom
 
 Fortunately, I'm a developer. I'm fairly sure I can develop a system that will do the work for me without the hassle of having to actually schedule anything.  From a systems point of view, it's fairly easy.  I'll have a piece of code that runs on a regular basis to read the feed (which is generated via the Jekyll publishing process) and then create a record per post in a tracking data store.  Then I'll have another piece of code that runs on my posting schedule that selects a post to publish from the tracking data store and does the publishing.
 
+![Social Media Automation Architecture](/assets/images/2024/06/2024-06-11-architecture.png)
+
 ## Azure resources
 
 There are a lot of ways to create this application, but I'm looking to reduce the cost of the system.  I think I can get it close to "free" for my small requirements.  [Cosmos DB](https://learn.microsoft.com/azure/cosmos-db/) has a "free forever" tier, so that gives me a solid NoSQL database to act as the tracking data store.  Azure Functions is a serverless mechanism for running small pieces of code that can execute in under five minutes.  You get a million executions a month for free, which is plenty.  Even if you had to pay for Cosmos DB and Azure Functions because you were over the free tier limits, the amounts are small.
