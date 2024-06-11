@@ -30,7 +30,6 @@ module logAnalytics 'br/public:avm/res/operational-insights/workspace:0.3.4' = {
     dataRetention: 30
     publicNetworkAccessForIngestion: 'Enabled'
     publicNetworkAccessForQuery: 'Enabled'
-    skuName: 'Free'
   }
 }
 
