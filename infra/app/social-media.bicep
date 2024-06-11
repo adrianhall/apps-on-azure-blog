@@ -74,7 +74,7 @@ resource cosmosAccount 'Microsoft.DocumentDB/databaseAccounts@2024-05-15' = {
 }
 
 resource cosmosDatabase 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases@2024-05-15' = {
-  name: 'sma-cosmosdb-${resourceToken}'
+  name: cosmosDatabaseName
   parent: cosmosAccount
   properties: {
     resource: { id: cosmosDatabaseName }
@@ -82,7 +82,7 @@ resource cosmosDatabase 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases@2024
 }
 
 resource cosmosContainer 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers@2024-05-15' = {
-  name: 'sma-cosmoscontainer-${resourceToken}'
+  name: cosmosContainerName
   parent: cosmosDatabase
   properties: {
     options: {
