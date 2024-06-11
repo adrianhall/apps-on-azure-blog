@@ -19,45 +19,26 @@ resource rg 'Microsoft.Resources/resourceGroups@2024-03-01' = {
   tags: tags
 }
 
-module swa 'br/public:avm/res/web/static-site:0.3.0' = {
-  name: 'swa-${resourceToken}'
+module jekyllSite './app/jekyll.bicep' = {
+  name: 'jekyll-${resourceToken}'
   scope: rg
   params: {
-    name: '${environmentName}-web-${resourceToken}'
+    environmentName: environmentName
     location: location
     lock: lock
-    sku: 'Standard'
-    tags: union(tags, { 'azd-service-name': 'web' })
+    resourceToken: resourceToken
+    tags: union(tags, { 'module-name': 'jekyll' })
+    zoneName: zoneName
   }
 }
 
-module dnszone 'br/public:avm/res/network/dns-zone:0.3.0' = {
-  name: 'dnszone-${resourceToken}'
+module socialMediaPoster './app/social-media.bicep' = {
+  name: 'social-media-${resourceToken}'
   scope: rg
   params: {
-    name: zoneName
-    location: 'global'
-    lock: lock
-    tags: tags
-  }
-}
-
-module wwwdomain 'modules/swa-custom-domain.bicep' = {
-  name: 'www-custom-domain-${resourceToken}'
-  scope: rg
-  params: {
-    name: 'www'
-    zoneName: dnszone.outputs.name
-    staticWebAppName: swa.outputs.name
-  }
-}
-
-module apexdomain 'modules/swa-apex-domain.bicep' = {
-  name: 'apex-custom-domain-${resourceToken}'
-  scope: rg
-  params: {
-    zoneName: dnszone.outputs.name
-    staticWebAppName: swa.outputs.name
+    location: location
+    resourceToken: resourceToken
+    tags: union(tags, { 'module-name': 'sma' })
   }
 }
 
@@ -79,7 +60,4 @@ module budget 'br/public:avm/res/consumption/budget:0.3.3' = {
 }
 
 output AZURE_LOCATION string = location
-output SERVICE_URL string[] = [
-  'https://${swa.outputs.defaultHostname}'
-  'https://${wwwdomain.outputs.domainName}'
-]
+output SERVICE_URL string[] = jekyllSite.outputs.serviceUrls
