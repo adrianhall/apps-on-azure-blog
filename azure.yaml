@@ -7,3 +7,7 @@ services:
     dist: _site
     language: js
     host: staticwebapp
+  social-media-automation:
+    project: ./social-media-automation
+    language: js
+    host: function

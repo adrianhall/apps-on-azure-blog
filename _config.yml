@@ -249,3 +249,39 @@ defaults:
       comments: false
       share: true
       related: false
+
+include:
+  - _data
+  - _includes
+  - _layouts
+  - _pages
+  - _posts
+  - _sass
+  - assets
+  - _config.yml
+
+exclude:
+  - .devcontainer
+  - .editorconfig
+  - .gitattributes
+  - .gitignore
+  - .github
+  - .jekyll-cache
+  - .sass-cache
+  - .vscode
+  - _site
+  - azure.yaml
+  - gemfiles
+  - host.json
+  - infra
+  - node_modules
+  - package.json
+  - package-lock.json
+  - social-media-automation
+  - staticwebapp.config.json
+  - swa-cli.config.json
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+

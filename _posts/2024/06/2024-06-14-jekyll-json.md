@@ -5,6 +5,7 @@ categories: automation
 tags: [ jekyll, jsonfeed, liquid ]
 header:
   image: "/assets/images/2024/06/2024-06-14-banner.png"
+  teaser: "/assets/images/2024/06/2024-06-14-banner.png"
 ---
 
 I am currently creating a social media posting automation system to complement this blog.  In the [last post]({% post_url 2024/06/2024-06-11-automation-1 %}), I took a look at the system architecture of the solution and provisioned the Azure resources that I need.  Today I am going to look at the first step in the process.  I need to produce a JSON file that contains the posts for the blog that an automated system can read and process.

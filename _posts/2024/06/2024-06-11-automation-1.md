@@ -5,6 +5,7 @@ categories: automation
 tags: [ bicep, azd, azure, functions, cosmosdb ]
 header:
   image: "/assets/images/2024/06/2024-06-11-banner.png"
+  teaser: "/assets/images/2024/06/2024-06-11-banner.png"
 ---
 
 In my last series, I built this blog, including all the infrastructure and automated posting.  However, a lot of the social media posting is done by hand.  Yes, there are social media calendars like [Hootsuite](https://www.hootsuite.com/) and [Buffer](https://buffer.com/) that allow me to schedule posts for some of the social media networks, but I still have to write and schedule each post individually. Aside from that, these platforms inevitably cost more than the blog to run.  Hootsuite, for example, costs $99/month (or about 10 times the cost of the blog itself).  Obviously, these services can do a lot for me.  I am sure they are very valuable to businesses that have brands to protect. However, I am unlikely to use the majority of their functionality.
