@@ -5,6 +5,6 @@
   },
   "devDependencies": {
     "@azure/static-web-apps-cli": "^1.1.8",
-    "azurite": "^3.30.0"
+    "azurite": "^3.31.0"
   }
 }
