@@ -32,12 +32,6 @@ enable_copy_code_button  : true
 copyright                : *name
 copyright_url            : # "copyright" URL, defaults to site.url
 
-# Pages to include
-include:
-  - _pages
-  - _posts
-  - assets
-
 # Comments settings
 comments:
   provider               : "disqus"
@@ -235,9 +229,6 @@ defaults:
       share: true
       related: true
       toc: true
-      socialmedia:
-        reddit:
-          - r/azure
   # _pages
   - scope:
       path: ""
@@ -277,7 +268,6 @@ exclude:
   - node_modules
   - package.json
   - package-lock.json
-  - social-media-automation
   - staticwebapp.config.json
   - swa-cli.config.json
   - Gemfile

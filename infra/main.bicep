@@ -32,16 +32,6 @@ module jekyllSite './app/jekyll.bicep' = {
   }
 }
 
-module socialMediaPoster './app/social-media.bicep' = {
-  name: 'social-media-${resourceToken}'
-  scope: rg
-  params: {
-    location: location
-    resourceToken: resourceToken
-    tags: union(tags, { 'module-name': 'sma' })
-  }
-}
-
 module budget 'br/public:avm/res/consumption/budget:0.3.3' = {
   name: 'budget-${resourceToken}'
   params: {
