@@ -32,22 +32,5 @@ module jekyllSite './app/jekyll.bicep' = {
   }
 }
 
-module budget 'br/public:avm/res/consumption/budget:0.3.3' = {
-  name: 'budget-${resourceToken}'
-  params: {
-    amount: 10
-    name: 'apps-on-azure-budget-${resourceToken}'
-    contactEmails: [
-      'photoadrian@outlook.com'
-    ]
-    location: location
-
-    category: 'Cost'
-    resourceGroupFilter: [ rg.name ]
-    resetPeriod: 'BillingMonth'
-    thresholds: [ 100, 125, 150, 200 ]
-  }
-}
-
 output AZURE_LOCATION string = location
 output SERVICE_URL string[] = jekyllSite.outputs.serviceUrls
