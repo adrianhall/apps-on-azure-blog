@@ -2,7 +2,7 @@
 title:  "Converting a TypeScript project from CommonJS to ESM"
 date:   2024-07-06
 categories: typescript
-tags: [ tips ]
+tags: [ tips, commonjs, esm ]
 header:
   image: "/assets/images/2024/07/2024-07-06-banner.png"
   teaser: "/assets/images/2024/07/2024-07-06-banner.png"
