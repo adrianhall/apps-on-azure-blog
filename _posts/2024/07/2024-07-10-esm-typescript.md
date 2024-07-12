@@ -195,3 +195,9 @@ This is also really only the start of the journey.  Some other things I want to 
 The code I developed today (and in future articles) is available in a [template repository](https://github.com/adrianhall/esm-typescript-library) so you can go and try it out for yourself.  This will be frequently updated as I write more articles about this topic.
 
 Until next time, happy hacking!
+
+## Further reading
+
+* [TypeScript](https://typescriptlang.org)
+* [ES Module Syntax](https://www.typescriptlang.org/docs/handbook/2/modules.html#es-module-syntax)
+* [Node subpath imports](https://nodejs.org/api/packages.html#subpath-imports)
