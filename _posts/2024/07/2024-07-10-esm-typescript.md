@@ -79,6 +79,12 @@ Before you can compile TypeScript, you need to set up the `tsconfig.json` file. 
 }
 ```
 
+Since I am including `node` in the types section, I also need the following module:
+
+```bash
+npm install -D @types/node
+```
+
 I can now run the compilation with `npx tsc`.  It will output stuff in the `./dist` directory.  You can run the script with the following:
 
 ```bash
@@ -118,7 +124,7 @@ export function sayHello(): void {
 I can also alter the `index.ts` to import it:
 
 ```typescript
-import { sayHello } from './modules/hello.ts';
+import { sayHello } from './modules/hello.js';
 
 sayHello();
 ```
@@ -128,7 +134,7 @@ Now that I'm using ES modules, I need to tell Node.  This is done by adding `"ty
 Run the build, then run `node ./dist/index.js` again.  It still works, but I am still using a relative path for my module.  My design aim here is to get rid of the relative path.  I want something like `#root/modules/hello.js` instead.  Let's put that in the script:
 
 ```typescript
-import { sayHello } from '#root/modules/hello.ts';
+import { sayHello } from '#root/modules/hello.js';
 
 sayHello();
 ```
