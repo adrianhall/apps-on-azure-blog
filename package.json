@@ -4,7 +4,7 @@
     "dev": "swa start"
   },
   "devDependencies": {
-    "@azure/static-web-apps-cli": "^1.1.8",
+    "@azure/static-web-apps-cli": "^2.0.1",
     "azurite": "^3.31.0"
   }
 }
