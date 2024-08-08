@@ -110,14 +110,18 @@ app.MapGroup("/api/articles").HasApiVersion(1.0).MapMyApi();
 Finally, you'll notice that I defined the actual underlying methods for the API in a separate static class called `MyApi`:
 
 ```csharp
+using Microsoft.AspNetCore.Http.HttpResults;
 
-using GetItemResponse = Results<Ok<MyThing>, BadRequest<string>, NotFound>;
-
-public static class MyApi
+namespace MyApp.Apis.MyApi
 {
-  public static async Task<GetItemResponse> GetItemAsync([AsParameters] MyApiServices, [FromRoute] string id, CancellationToken ct = default)
+  using GetItemResponse = Results<Ok<MyThing>, BadRequest<string>, NotFound>;
+
+  public static class MyApi
   {
-    // My code here
+    public static async Task<GetItemResponse> GetItemAsync([AsParameters] MyApiServices, [FromRoute] string id, CancellationToken ct = default)
+    {
+      // My code here
+    }
   }
 }
 ```
@@ -125,6 +129,7 @@ public static class MyApi
 A few things:
 
 * I define a type alias for the response.  The typed results list gets unwieldy pretty quickly in my real applications, and that contributes to unreadable code.  Define the response up front and then use it everywhere.
+* Since I am using a type alias with "short names", I have to place it inside a namespace block.  If I use fully qualified types, I can place it above the namespace statement (and use file-level namespaces again).  However, the type names become huge and make it even more unreadable than before.
 * If I only have one parameter, I just include it in the method signature.  If I have multiple parameters, I define a struct (generally in the same file).
 * If it's async, I always include a cancellation token.  I also call the async method if it's available and pass the cancellation token along.
 
