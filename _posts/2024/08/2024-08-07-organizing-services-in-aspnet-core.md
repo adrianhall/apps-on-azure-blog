@@ -2,7 +2,7 @@
 title:  "Organizing service injection in ASP.NET Core Minimal APIs"
 date:   2024-08-07
 categories: dotnet
-tags: [ tips, aspnetcore ]
+tags: [ tips, aspnetcore, csharp ]
 header:
   image: "/assets/images/2024/08/2024-08-07-banner.jpg"
   teaser: "/assets/images/2024/08/2024-08-07-banner.jpg"
