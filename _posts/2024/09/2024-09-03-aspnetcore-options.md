@@ -141,10 +141,13 @@ If you have to use a set of options in controllers or services where the object 
 Start with a model record:
 
 ```csharp
-public record ServiceInformation(Uri endpoint);
+public record ServiceInformation
+{
+  public required Uri Endpoint { get; set; }
+}
 ```
 
-I love using records for models. A lot of the hard work is done for you. You just have to specify the shape of the information.
+I love using records for models. A lot of the hard work is done for you. You just have to specify the shape of the information.  In the previous section, I used a record where each property of the record was defined in a primary constructor.  You cannot do that for the dependency injection case.  You must have a "parameterless constructor".
 
 Next, inject the service information into the services collection (inside `Program.cs`):
 
