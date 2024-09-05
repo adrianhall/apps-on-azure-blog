@@ -1,6 +1,6 @@
 {
 	"name": "Jekyll",
-	"image": "mcr.microsoft.com/devcontainers/jekyll:2-bullseye",
+	"image": "mcr.microsoft.com/devcontainers/jekyll:dev-bookworm",
 	"features": {
 		"ghcr.io/devcontainers/features/azure-cli:1": {
 			"installBicep": true
