@@ -20,8 +20,8 @@ All of these options will have you writing less code and getting to the real mea
 
 But you (like me for this project) have decided to go it alone.  So how is it done?  This article is one of a number of articles I will write over the coming month and will go into depth about the [ASP.NET Identity](https://learn.microsoft.com/aspnet/core/security/authentication/identity) system.  My outline thus far:
 
-* Project setup (this article).
-* Account registration.
+* [Project setup]({% post_url 2024/09/2024-09-11-aspnet-identity-part1 %}).
+* [Account registration]({% post_url 2024/09/2024-09-13-aspnet-identity-part2 %}).
 * Email confirmation.
 * Signing in and out with a username and password.
 * Password reset.
