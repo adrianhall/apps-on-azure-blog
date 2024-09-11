@@ -121,7 +121,7 @@ internal async Task EnsureUserExistsAsync(SeedUser userRecord)
 internal record SeedUser(string UserName, string DisplayName, List<string>? Roles = null);
 ```
 
-Check out [my ApplicationDbInitializer](https://github.com/adrianhall/samples/blob/main/identity/Samples.Identity/Data/ApplicationDbInitializer.cs) for more reusable methods for seeding the database and for a full example that includes role assignments as well.
+Check out [my ApplicationDbInitializer](https://github.com/adrianhall/samples/blob/0911/identity/Samples.Identity/Data/ApplicationDbInitializer.cs) for more reusable methods for seeding the database and for a full example that includes role assignments as well.
 
 ## Configuring identity
 
@@ -230,6 +230,7 @@ But, seriously, don't roll your own identity for a product unless the product is
 
 ## Further reading
 
+* [The project so far](https://github.com/adrianhall/samples/tree/0911/identity)
 * [ASP.NET Identity](https://learn.microsoft.com/aspnet/core/security/authentication/identity)
 * [OAuth 2.0](https://oauth.net/2/)
 * [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/)
