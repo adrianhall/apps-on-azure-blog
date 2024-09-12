@@ -42,7 +42,7 @@ flowchart TD
 
 ## Triggering registration
 
-Let's get over some of the pre-requisites first.  When a user goes to my home page, I need to be able to trigger a registration event.  I started by gutting the `Views/Shared/_Layout.cshtml` file and establishing [my own Bootstrap configuration]({% post_url 2024-08-08-bootstrap-in-aspnetcore %}).  Part of that process was to create a navigation partial, which then includes the `Views/Shared/_LoginPartial.cshtml` file.  This uses ASP.NET Identity to decide what to display:
+Let's get over some of the pre-requisites first.  When a user goes to my home page, I need to be able to trigger a registration event.  I started by gutting the `Views/Shared/_Layout.cshtml` file and establishing [my own Bootstrap configuration]({% post_url 2024/08/2024-08-08-bootstrap-in-aspnetcore %}).  Part of that process was to create a navigation partial, which then includes the `Views/Shared/_LoginPartial.cshtml` file.  This uses ASP.NET Identity to decide what to display:
 
 ```html
 @using Samples.Identity.Data
@@ -91,7 +91,7 @@ All three links go to actions within an `AccountController` - something I have n
 For the rest of this project, I'm going to be working on a number of files:
 
 * `Controllers/AccountController.cs` is a C# class for handling the business logic for account operations.  We'll be adding a lot to this.
-* `ViewModels/Account/*.cs` is a set of model classes for passing data to and from the views.
+* `Models/Account/*.cs` is a set of model classes for passing data to and from the views.
 * `Views/Account/*.cshtml` are a set of views, written in Razor syntax, for displaying the output.
 
 ## Display the registration form
@@ -472,6 +472,7 @@ real value to the experience. There is still time to consider NOT doing an ident
 
 * [Mozilla Developer Network](https://developer.mozilla.org/) - essential reading for frontend devs.
 * [ASP.NET MVC Forms tag helpers](https://learn.microsoft.com/aspnet/core/mvc/views/working-with-forms).
+* [ASP.NET Identity Overview](https://learn.microsoft.com/aspnet/core/security/authentication/identity)
 
 <!-- Links -->
 [github]: https://github.com/adrianhall/samples/tree/0913/identity
