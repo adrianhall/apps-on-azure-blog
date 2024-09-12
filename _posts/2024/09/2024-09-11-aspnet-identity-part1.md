@@ -153,7 +153,8 @@ builder.Services
       options.SignIn.RequireConfirmedAccount = true;
       options.User.RequireUniqueEmail = true;
     })
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
 // ASP.NET MVC
 builder.Services.AddControllersWithViews();
@@ -196,6 +197,8 @@ Let's focus in on the `builder.Services.AddIdentity()` call.  There are lots of 
 * [Account lockout](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.identity.lockoutoptions).
 
 One of the most common requirements for an identity service is account confirmation.  As we will see in the next article, we send the user a link that they need to use to confirm the account.  The `options.SignIn.RequireConfirmedAccount = true` option sets up ASP.NET Identity so that a confirmed account is required before they can sign in.  I'm going to be using the email address for my user ID, so I need to ensure that each user has a unique email address.
+
+The `.AddDefaultTokenProviders()` is also a part of the account confirmation and reset password capabilities.  When we go through the process of confirming an account, we ask the system to generate a token that the user then must submit back to the system to validate that the email address is correct.  This is done with a token provider.  ASP.NET Identity provides default implementations of the token provider so that you don't have to worry about it.  If you want to use short and easily entered tokens (for example, if you are doing authentication for a set-top box), then you will want to override the default token providers.
 
 > **Use extension methods to simplify setup**
 > I don't put all this setup in `Program.cs`.  Instead I put the setup in extension methods.  This allows me to store the database setup with the database context and initializer, for instance.  Using extension methods also improves readability of your code.
