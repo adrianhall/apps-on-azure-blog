@@ -22,9 +22,9 @@ But you (like me for this project) have decided to go it alone.  So how is it do
 
 * [Project setup]({% post_url 2024/09/2024-09-11-aspnet-identity-part1 %}).
 * [Account registration]({% post_url 2024/09/2024-09-13-aspnet-identity-part2 %}).
-* Email confirmation.
 * Signing in and out with a username and password.
 * Password reset.
+* Email confirmations.
 * Social logins.
 * Two-factor authentication.
 * Going passwordless with magic links.

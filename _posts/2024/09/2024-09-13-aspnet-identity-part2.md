@@ -13,9 +13,9 @@ This article is one of a number of articles I will write over the coming month a
 
 * [Project setup]({% post_url 2024/09/2024-09-11-aspnet-identity-part1 %}).
 * [Account registration]({% post_url 2024/09/2024-09-13-aspnet-identity-part2 %}).
-* Email confirmation.
 * Signing in and out with a username and password.
 * Password reset.
+* Email confirmations.
 * Social logins.
 * Two-factor authentication.
 * Going passwordless with magic links.
@@ -320,6 +320,25 @@ public async Task<IActionResult> Register([FromForm] RegisterInputModel input)
 
 I've made sure to comment this throughout so you can follow along.  However, there are a few other controller actions (which we will get onto in a bit) and some 
 helper methods that are needed.  Explicitly, there is a method of sending a confirmation link to a user, which is not yet implemented.
+
+This is a great point at which to take a look at some of the APIs that are provided by ASP.NET Identity.  You have three basic objects that are injected by dependency injection:
+
+* `UserManager<TUser>` handles user records.
+* `RoleManager<TUser>` handles roles.
+* `SignInManager<TUser>` handles sign in and sign out actions.
+
+Within `UserManager<TUser>`, there are a number of methods for finding users - by email, ID, username, etc.  For example, I'm using the email address as my primary login method, so I can use the following method:
+
+```csharp
+ApplicationUser? user = userManager.FindByEmailAsync(emailAddress);
+```
+
+The user manager also has the normal CRUD methods for creating, updating, and deleting users.
+
+The `SignInManager<TUser>` deals with the actual user claims.  The logged in user is stored in `HttpContext.User` as a `ClaimsPrincipal`.  This is generally not something you want to be using when you are developing with ASP.NET Identity.  You want to be using `ApplicationUser` (or whatever your user model is).  To get the user model from the claims principal, use `userManager.GetUserAsync(HttpContext.User)`.  To determine if the user is logged in, use `signInManager.IsSignedIn(HttpContext.User)`.  We'll get more into
+the sign in manager in the next article when we cover authentication.
+
+We'll cover the role manager in greater detail when we talk about roles and authorization later on in the series.
 
 ## Sending the confirmation link
 
