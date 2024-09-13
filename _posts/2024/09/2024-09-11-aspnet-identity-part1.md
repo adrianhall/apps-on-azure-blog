@@ -20,16 +20,18 @@ All of these options will have you writing less code and getting to the real mea
 
 But you (like me for this project) have decided to go it alone.  So how is it done?  This article is one of a number of articles I will write over the coming month and will go into depth about the [ASP.NET Identity](https://learn.microsoft.com/aspnet/core/security/authentication/identity) system.  My outline thus far:
 
-* [Project setup]({% post_url 2024/09/2024-09-11-aspnet-identity-part1 %}).
-* [Account registration]({% post_url 2024/09/2024-09-13-aspnet-identity-part2 %}).
-* Signing in and out with a username and password.
-* Password reset.
-* Email confirmations.
-* Social logins.
-* Two-factor authentication.
-* Going passwordless with magic links.
+{% include_relative includes/aspnet-identity-topics.html %}
 
 I'll then move onto OIDC support from there.
+
+## Required knowledge
+
+ASP.NET Identity is a simple API, but it does rely on pre-requisite knowledge.  Specifically, you should start with a solid understanding of the following topics:
+
+* [Entity Framework Core](https://learn.microsoft.com/ef/core/)
+* [ASP.NET MVC](https://dotnet.microsoft.com/apps/aspnet/mvc)
+
+If you find yourself uncomfortable with databases and web development, perhaps you should review the linked content before continuing with ASP.NET Identity.  You'll find [a great tutorial](https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc) which takes you through developing a basic MVC database driven application.
 
 ## Database support
 
