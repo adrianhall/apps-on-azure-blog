@@ -11,14 +11,7 @@ mermaid: true
 
 This article is one of a number of articles I will write over the coming month and will go into depth about the [ASP.NET Identity](https://learn.microsoft.com/aspnet/core/security/authentication/identity) system.  My outline thus far:
 
-* [Project setup]({% post_url 2024/09/2024-09-11-aspnet-identity-part1 %}).
-* [Account registration]({% post_url 2024/09/2024-09-13-aspnet-identity-part2 %}).
-* Signing in and out with a username and password.
-* Password reset.
-* Email confirmations.
-* Social logins.
-* Two-factor authentication.
-* Going passwordless with magic links.
+{% include_relative includes/aspnet-identity-topics.html %}
 
 As you may remember from the [last article]({% post_url 2024/09/2024-09-11-aspnet-identity-part1 %}), the first user journey I am going to implement is the registration journey.  This is actually one of the more complex journeys with several parts to it.
 
