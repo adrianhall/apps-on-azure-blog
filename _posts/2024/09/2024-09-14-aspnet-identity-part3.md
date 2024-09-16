@@ -202,5 +202,5 @@ I'm going to get to those in the future. I'd use this level of authentication fo
 ## Further reading
 
 * [The project so far](https://github.com/adrianhall/samples/tree/0914/identity)
-* [ASP.NET Identity](https://learn.microsoft.com\/aspnet/core/security/authentication/identity)
+* [ASP.NET Identity](https://learn.microsoft.com/aspnet/core/security/authentication/identity)
 * [ASP.NET MVC](https://dotnet.microsoft.com/apps/aspnet/mvc)
