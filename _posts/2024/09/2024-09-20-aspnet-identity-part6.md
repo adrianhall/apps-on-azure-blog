@@ -1,5 +1,5 @@
 ---
-title:  "ASP.NET Identity deep dive - Part 5 (Sending email)"
+title:  "ASP.NET Identity deep dive - Part 6 (Social logins)"
 date:   2024-09-20
 categories: dotnet
 tags: [ csharp, aspnetcore, identity ]
@@ -17,7 +17,7 @@ Now that I have the basic flows sorted out (which includes username/password wit
 
 ## Required packages
 
-ASP.NET Identity supports Facebook, Google, and Microsoft accounts out of the box.  There is another (extensive) set of libraries that cover everything else, including Amazon, Apple, Baidu, GitHub, LinkedIn, and pretty much anything else you need.  You can see [the list on their GitHub repository](https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers/tree/dev/src).  The first step is to add the correct libraries to your project:
+ASP.NET Identity supports Facebook, Google, and Microsoft accounts out of the box.  There is another (extensive) set of libraries (unsupported by Microsoft) that cover everything else, including Amazon, Apple, Baidu, GitHub, LinkedIn, and pretty much anything else you need.  You can see [the list on their GitHub repository](https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers/tree/dev/src).  The first step is to add the correct libraries to your project:
 
 ```xml
 <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="8.0.8" />
@@ -37,12 +37,12 @@ Before you start, there is *something* you need to do on the provider.  You'll n
 * [LinkedIn](https://learn.microsoft.com/linkedin/shared/authentication/client-credentials-flow?context=linkedin)
 * [Microsoft](https://learn.microsoft.com/aspnet/core/security/authentication/social/microsoft-logins)
 
-If you are intending on a different provider, you need to find out how to register for their developer program, register an application and get a **ClientId** and **ClientSecret**.  You'll also have to add the specific provider library from the `AspNet.Security.OAuth` collection of libraries.  
+You can support as many different identity providers that you want. If you are intending on supporting a different provider, you need to find out how to register for their developer program, register an application and get a **ClientId** and **ClientSecret**.  You'll also have to add the specific provider library from the `AspNet.Security.OAuth` collection of libraries.  
 
 When you are configuring the client, note the following:
 
 * Each provider has a specific "callback URI" that is based on your identity service.  For example, my server lives on `https://localhost:7186`; when configuring the client in the Azure portal, I needed to provide the "Redirect URI" as `https://localhost:7186/signin-microsoft` - That `/signin-microsoft` appended to your service URI is dependent on the library being used to configure the external provider.  Most have a default but allow you to configure it.
-* Our primary mechanism for identifying  users is the email address.  If a user signs in with Facebook one day and their Microsoft account the next day, they shouldn't have to register again.  You will generally be asked what information (claims) you want to provide - always allow the email address.
+* Our primary mechanism for identifying  users is the email address.  If a user signs in with Facebook one day and their Microsoft account the next day, they shouldn't have to register again.  You will generally be asked what information you want to provide.  These are called "claims" in the identity world - always allow the email address when given the option.  Of the list I'm using, LinkedIn was the only one that asked me.
 * The generated client secret is a security token - make sure you protect it as such.  In production, store these in Azure Key Vault.  In development, store them in user-secrets.  **NEVER CHECK A SECURITY TOKEN INTO SOURCE CODE CONTROL**.
 
 Once you have the client ID and client secret, add them to your user-secrets, like this:
@@ -72,9 +72,13 @@ Once you have the client ID and client secret, add them to your user-secrets, li
 
 Obviously, these values aren't real (which you will realize as soon as you generate your own - most of the values don't even look remotely similar to these).  Put your values in instead of these fake ones.  The only one I actually configured at this point was the Microsoft account.  The others held fake values in development just so I could see the icons.
 
+> **What if I can't generate a client secret?**<br/>
+> Enterprise providers (like Microsoft Entra ID) give the tenant administrator facilities to turn off client secrets.  This means you won't be able to generate a client secret for your application.  Unfortunately, the instructions you need for configuring alternative secure methods are beyond these instructions and you will have to work with your tenant administrator to find the best way of configuring your ASP.NET Core Authentication client.
+> {: .notice--warning}
+
 ## Update Program Startup
 
-Up to this point, ASP.NET Identity hasn't needed to use `.AddAuthentication()`, but that changes todaya.  Here is the actual code I tend to use for configuring external clients:
+Up to this point, ASP.NET Identity hasn't needed to use `.AddAuthentication()`, but that changes today.  Here is the code I use for configuring external clients:
 
 ```csharp
 var identityBuilder = builder.Services.AddAuthentication();
@@ -88,16 +92,6 @@ if (fbCfg.HasKey("ClientId") && fbCfg.HasKey("ClientSecret"))
     });
 }
 
-IConfigurationSection googleCfg = builder.Configuration.GetSection("Identity:Google");
-if (googleCfg.HasKey("ClientId") && googleCfg.HasKey("ClientSecret"))
-{
-    identityBuilder.AddGoogle(options =>
-    {
-        options.ClientId = googleCfg.GetRequiredString("ClientId");
-        options.ClientSecret = googleCfg.GetRequiredString("ClientSecret");
-    });
-}
-
 IConfigurationSection msftCfg = builder.Configuration.GetSection("Identity:MicrosoftAccount");
 if (msftCfg.HasKey("ClientId") && msftCfg.HasKey("ClientSecret"))
 {
@@ -107,19 +101,9 @@ if (msftCfg.HasKey("ClientId") && msftCfg.HasKey("ClientSecret"))
         options.ClientSecret = msftCfg.GetRequiredString("ClientSecret");
     });
 }
-
-IConfiguration linkedInCfg = builder.Configuration.GetSection("Identity:LinkedIn");
-if (linkedInCfg.HasKey("ClientId") && linkedInCfg.HasKey("ClientSecret"))
-{
-    identityBuilder.AddLinkedIn(options =>
-    {
-        options.ClientId = linkedInCfg.GetRequiredString("ClientId");
-        options.ClientSecret = linkedInCfg.GetRequiredString("ClientSecret");
-    });
-}
 ```
 
-I repeat ad-nauseum for each provider.  The extension methods `HasKey()` and `GetRequiredString()` allow me to avoid adding external providers that I am not using:
+I repeat ad-nauseum for each provider I want to support.  The extension methods `HasKey()` and `GetRequiredString()` allow me to avoid adding external providers that I am not using:
 
 ```csharp
 public static string GetRequiredString(this IConfiguration configuration, string key)
@@ -128,6 +112,8 @@ public static string GetRequiredString(this IConfiguration configuration, string
 public static bool HasKey(this IConfiguration configuration, string key)
     => !string.IsNullOrWhiteSpace(configuration[key]);
 ```
+
+I have four supported providers, so I'll have four sections in the `Identity` configuration and four practically identical blocks for configuring the identity provider in my application startup.
 
 ## Update view models and Login action
 
@@ -170,6 +156,8 @@ public async Task<IActionResult> Login(string? returnUrl = null)
 }
 ```
 
+The `GetExternalAuthenticationSchemesAsync()` method returns the list in the order they were configured.  However, the ordering is not guaranteed.  For display purposes, you may want to do something in code to ensure your icons are displayed in the right order.
+
 Similarly, in the POST handler for the `Login()` action, I've got a "DisplayLoginView" method:
 
 ```csharp
@@ -192,12 +180,12 @@ Before I update the login view, I want to establish some CSS for displaying the 
 ```scss
 .auth-Microsoft {
     &::before {
-        content: "\f65d";
+        content: "\f65d"; // this is the icon font ID for the microsoft logo
     }
 }
 ```
 
-I'm going to construct this CSS class based on the name of the provider, so it has to match exactly.  You can look in `bootstrap-icons.css` (which will be in the `lib/bootstrap-icons/font` directory) for the value of the content field.  If you need an alternate icon, you can swap out the font.  Font Awesome has an extensive list of brand icons as well.
+I'm going to construct this CSS class based on the name of the provider, so it has to match exactly.  You can look in `bootstrap-icons.css` (which will be in the `lib/bootstrap-icons/font` directory) for the value of the content field.  If you need an alternate icon, you can swap out the font.  [Font Awesome](https://fontawesome.com/) has an extensive [list of brand icons](https://fontawesome.com/search?o=a&f=brands), as do other icon fonts. If you don't want to use an icon font, you can use SVG files instead.
 
 Back to the login view.  Here is the bit of code that I added:
 
