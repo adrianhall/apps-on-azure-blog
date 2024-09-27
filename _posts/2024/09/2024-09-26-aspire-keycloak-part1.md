@@ -85,6 +85,9 @@ Adding the `.WithReference(realm)` adds two environment variables `Keycloak__Rea
 }
 ```
 
+> The `Keycloak.AuthServices` libraries use `Keycloak:Resource` and `Keycloak:Credentials:Secret` as a convention instead of `Keycloak:ClientId` and `Keycloak:ClientSecret`.  You can save yourself a couple of lines of code by conforming to the convention instead.  I prefer to use the same terminology within config that all the other common OIDC servers use.
+> {: .notice--information}
+
 This is enough to configure Keycloak authentication in each project.
 
 > For a good primer on OIDC and OAuth2, check out [this video on YouTube](https://www.youtube.com/watch?v=8aCyojTIW6U) for a great explanation.
@@ -243,9 +246,7 @@ app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 app.UseAntiforgery();
-
 app.UseOutputCache();
-
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -268,7 +269,7 @@ There are a few additional services here.
 
 Note that the Web API only needed the client ID.  However, the Web App needs both the client ID and client secret.
 
-By default, the `HttpClient` that is generated doesn't know anything about the authentication and authorization process.  You have to tell it to add the `Authorization` header.  The `HttpContext` contains a method `.GetTokenAsync(<token-type>)` that can return the appropriate token to pass onto the Web API.  The `DownstreamApiTokenHandler` is a class that is used for exactly that purpose:
+By default, the `HttpClient` that is generated doesn't know anything about the authentication and authorization process.  You have to tell it to add the `Authorization` header.  The `HttpContext` contains a method `.GetTokenAsync(<token-type>)` that can return the appropriate token to pass onto the Web API. The `DownstreamApiTokenHandler` is a class that is used for exactly that purpose:
 
 ```csharp
 using Microsoft.AspNetCore.Authentication;
@@ -294,6 +295,8 @@ public class DownstreamApiTokenHandler(IHttpContextAccessor httpContextAccessor)
     }
 }
 ```
+
+[AccessTokenPropagationHandler](https://github.com/NikiforovAll/keycloak-authorization-services-dotnet/blob/main/src/Keycloak.AuthServices.Authorization/AuthorizationServer/AccessTokenPropagationHandler.cs) in the `Keycloak.AuthServices.Authorization` library does the same thing.
 
 You can now run the program again.  It's worthwhile following the logic here:
 
