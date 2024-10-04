@@ -3,6 +3,7 @@ title:  "Enforcing code style with eslint, prettier, and husky"
 date:   2024-07-22
 categories: typescript
 tags: [ tips, tools, eslint, prettier, husky ]
+image: "/assets/images/2024/07/2024-07-22-banner.png"
 header:
   image: "/assets/images/2024/07/2024-07-22-banner.png"
   teaser: "/assets/images/2024/07/2024-07-22-banner.png"

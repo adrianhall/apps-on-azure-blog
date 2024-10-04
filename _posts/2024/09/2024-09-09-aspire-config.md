@@ -3,6 +3,7 @@ title:  ".NET Aspire configuration patterns"
 date:   2024-09-09
 categories: dotnet
 tags: [ csharp, aspnetcore, aspire ]
+image: "/assets/images/2024/09/2024-09-09-banner.png"
 header:
   image: "/assets/images/2024/09/2024-09-09-banner.png"
   teaser: "/assets/images/2024/09/2024-09-09-banner.png"

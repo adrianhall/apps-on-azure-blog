@@ -3,6 +3,7 @@ title:  "Customizing Keycloak with Aspire - Part 3"
 date:   2024-10-04
 categories: dotnet
 tags: [ csharp, aspnetcore, identity, aspire, keycloak ]
+image: "/assets/images/2024/10/2024-10-04-banner.png"
 header:
   image: "/assets/images/2024/10/2024-10-04-banner.png"
   teaser: "/assets/images/2024/10/2024-10-04-banner.png"
@@ -186,4 +187,5 @@ Now, back to my project!
 * [The final sample](https://github.com/adrianhall/samples/tree/1004/keycloak)
 * [Keycloak](https://www.keycloak.org/documentation)
 * [.NET Aspire](https://learn.microsoft.com/dotnet/aspire/get-started/aspire-overview)
+  * Check out [Discord](https://discord.com/channels/732297728826277939/759125320505884752) and [samples](https://github.com/dotnet/aspire-samples)
 * [Aspire samples](https://github.com/dotnet/aspire-samples)

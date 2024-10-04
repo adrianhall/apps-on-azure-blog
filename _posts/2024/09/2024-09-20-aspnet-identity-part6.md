@@ -3,6 +3,7 @@ title:  "ASP.NET Identity deep dive - Part 6 (Social logins)"
 date:   2024-09-20
 categories: dotnet
 tags: [ csharp, aspnetcore, identity ]
+image: "/assets/images/2024/09/2024-09-20-banner.png"
 header:
   image: "/assets/images/2024/09/2024-09-20-banner.png"
   teaser: "/assets/images/2024/09/2024-09-20-banner.png"

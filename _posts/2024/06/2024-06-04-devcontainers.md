@@ -3,6 +3,7 @@ title:  "Dev containers are a developers best friend"
 date:   2024-06-04
 categories: productivity
 tags: [ vscode, docker ]
+image: "/assets/images/2024/06/2024-06-04-banner.png"
 header:
   image: "/assets/images/2024/06/2024-06-04-banner.png"
 ---

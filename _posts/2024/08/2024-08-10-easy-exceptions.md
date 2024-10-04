@@ -3,6 +3,7 @@ title:  "Better data validation exceptions with C#"
 date:   2024-08-10
 categories: dotnet
 tags: [ tips, csharp ]
+image: "/assets/images/2024/08/2024-08-10-banner.jpg"
 header:
   image: "/assets/images/2024/08/2024-08-10-banner.jpg"
   teaser: "/assets/images/2024/08/2024-08-10-banner.jpg"

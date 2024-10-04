@@ -3,10 +3,10 @@ title:  "Customizing Keycloak with Aspire - Part 2"
 date:   2024-09-30
 categories: dotnet
 tags: [ csharp, aspnetcore, identity, aspire, keycloak ]
+image: "/assets/images/2024/09/2024-09-30-banner.png"
 header:
   image: "/assets/images/2024/09/2024-09-30-banner.png"
   teaser: "/assets/images/2024/09/2024-09-30-banner.png"
-mermaid: true
 ---
 
 In [my last article]({% post_url 2024/09/2024-09-26-aspire-keycloak-part1 %}), I introduced the Keycloak identity service and showed how the development version can be easily integrated into a project.  Development services get you started quickly and allow you to defer the details until later on.  At some point, however, you need to take control of your service and start working towards production.  There are a number of things that the development version of the Keycloak identity service doesn't do that you need in production.  These include SSL/TLS support, database storage, and proper configuration of the flows.
@@ -132,7 +132,7 @@ It also looks like the Keycloak hosting model for Aspire is going to become an o
 
 * [The project so far][github]
 * [Keycloak]
-* [.NET Aspire][Aspire]
+* [.NET Aspire][Aspire] (check out [Discord](https://discord.com/channels/732297728826277939/759125320505884752) and [samples](https://github.com/dotnet/aspire-samples))
 * [Using Dockerfile with .NET Aspire][dockerfile]
 
 <!-- Links -->

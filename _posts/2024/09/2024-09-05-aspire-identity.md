@@ -3,6 +3,7 @@ title:  "Local development for the cloud: Transitioning to .NET Aspire"
 date:   2024-09-05
 categories: dotnet
 tags: [ csharp, aspnetcore, aspire ]
+image: "/assets/images/2024/09/2024-09-05-banner.png"
 header:
   image: "/assets/images/2024/09/2024-09-05-banner.png"
   teaser: "/assets/images/2024/09/2024-09-05-banner.png"

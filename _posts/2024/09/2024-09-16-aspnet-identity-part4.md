@@ -3,6 +3,7 @@ title:  "ASP.NET Identity deep dive - Part 4 (Password reset)"
 date:   2024-09-16
 categories: dotnet
 tags: [ csharp, aspnetcore, identity ]
+image: "/assets/images/2024/09/2024-09-16-banner.png"
 header:
   image: "/assets/images/2024/09/2024-09-16-banner.png"
   teaser: "/assets/images/2024/09/2024-09-16-banner.png"

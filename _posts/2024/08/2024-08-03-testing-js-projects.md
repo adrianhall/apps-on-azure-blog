@@ -3,6 +3,7 @@ title:  "The State of JavaScript Testing Frameworks 2024"
 date:   2024-08-03
 categories: typescript
 tags: [ tips, tools, testing ]
+image: "/assets/images/2024/08/2024-08-03-banner.png"
 header:
   image: "/assets/images/2024/08/2024-08-03-banner.png"
   teaser: "/assets/images/2024/08/2024-08-03-banner.png"

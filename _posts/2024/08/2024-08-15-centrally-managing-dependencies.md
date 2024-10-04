@@ -3,6 +3,7 @@ title:  "Centrally managing dependencies in your C# solutions"
 date:   2024-08-15
 categories: dotnet
 tags: [ tips, csharp ]
+image: "/assets/images/2024/08/2024-08-15-banner.jpg"
 header:
   image: "/assets/images/2024/08/2024-08-15-banner.jpg"
   teaser: "/assets/images/2024/08/2024-08-15-banner.jpg"

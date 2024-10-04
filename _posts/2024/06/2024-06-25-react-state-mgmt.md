@@ -3,6 +3,7 @@ title:  "The State of React state management in 2024"
 date:   2024-06-25
 categories: react
 tags: [ react, comparison ]
+image: "/assets/images/2024/06/2024-06-25-banner.png"
 header:
   image: "/assets/images/2024/06/2024-06-25-banner.png"
 ---

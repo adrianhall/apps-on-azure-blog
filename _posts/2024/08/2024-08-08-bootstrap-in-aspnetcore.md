@@ -3,6 +3,7 @@ title:  "Building Bootstrap apps from SASS with ASP.NET Core"
 date:   2024-08-08
 categories: dotnet
 tags: [ tips, aspnetcore, csharp, scss, bootstrap ]
+image: "/assets/images/2024/08/2024-08-08-banner.jpg"
 header:
   image: "/assets/images/2024/08/2024-08-08-banner.jpg"
   teaser: "/assets/images/2024/08/2024-08-08-banner.jpg"

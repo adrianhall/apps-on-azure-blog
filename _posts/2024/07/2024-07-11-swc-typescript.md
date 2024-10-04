@@ -3,6 +3,7 @@ title:  "Building TypeScript projects with the swc compiler"
 date:   2024-07-11
 categories: typescript
 tags: [ tips, esm, swc ]
+image: "/assets/images/2024/07/2024-07-11-banner.png"
 header:
   image: "/assets/images/2024/07/2024-07-11-banner.png"
   teaser: "/assets/images/2024/07/2024-07-11-banner.png"

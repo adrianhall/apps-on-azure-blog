@@ -3,6 +3,7 @@ title:  "ASP.NET Identity deep dive - Part 1 (Project setup)"
 date:   2024-09-11
 categories: dotnet
 tags: [ csharp, aspnetcore, identity ]
+image: "/assets/images/2024/09/2024-09-11-banner.png"
 header:
   image: "/assets/images/2024/09/2024-09-11-banner.png"
   teaser: "/assets/images/2024/09/2024-09-11-banner.png"

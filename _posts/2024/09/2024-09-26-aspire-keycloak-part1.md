@@ -3,10 +3,10 @@ title:  "Integrating Keycloak with Aspire - Part 1"
 date:   2024-09-26
 categories: dotnet
 tags: [ csharp, aspnetcore, identity, aspire, keycloak ]
+image: "/assets/images/2024/09/2024-09-26-banner.png"
 header:
   image: "/assets/images/2024/09/2024-09-26-banner.png"
   teaser: "/assets/images/2024/09/2024-09-26-banner.png"
-mermaid: true
 ---
 
 In my series on ASP.NET Identity, I mentioned (several times) that you should be using [Keycloak], [Auth0], [Corbado], or another identity service instead of rolling your own.  That's all good, but I left it up to you to figure out exactly how to do that.  I thought it would be a good idea to configure an Aspire project from the beginning and show how authentication and authorization with a service works.  This article will be more of a "make the code work" type of article, with follow-on articles on setting Keycloak up properly.
@@ -323,7 +323,7 @@ There is still a significant amount of work to do in defining things correctly, 
 
 * [The project so far][github]
 * [Keycloak]
-* [.NET Aspire][Aspire]
+* [.NET Aspire][Aspire] (check out [Discord](https://discord.com/channels/732297728826277939/759125320505884752) and [samples](https://github.com/dotnet/aspire-samples))
 * [ASP.NET Core Security](https://learn.microsoft.com/aspnet/core/security/)
 
 <!-- Links -->

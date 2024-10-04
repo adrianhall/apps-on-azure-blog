@@ -3,6 +3,7 @@ title:  "Making ASP.NET Core applications readable - the options patterns"
 date:   2024-09-03
 categories: dotnet
 tags: [ tips, csharp, aspnetcore ]
+image: "/assets/images/2024/09/2024-09-03-banner.png"
 header:
   image: "/assets/images/2024/09/2024-09-03-banner.png"
   teaser: "/assets/images/2024/09/2024-09-03-banner.png"

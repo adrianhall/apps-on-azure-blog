@@ -13,6 +13,8 @@
         {
             "id": "{{ article.id | slugify }}",
             "url": "{{ article.url | absolute_url }}",
+            "image": "{{ article.header.image | absolute_url }}",
+            "banner_image": "{{ article.header.image | absolute_url }}",
             "title": "{{ article.title | replace: '|', '&#124;' | markdownify | strip_html | strip_newlines | escape_once }}",
             "date_published": "{{ article.date | date: "%Y-%m-%d" }}",
             "categories": {{ article.categories | jsonify }},

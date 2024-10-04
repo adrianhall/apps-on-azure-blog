@@ -3,6 +3,7 @@ title:  "TypeScript, ES Modules, and root-relative imports"
 date:   2024-07-10
 categories: typescript
 tags: [ tips, esm ]
+image: "/assets/images/2024/07/2024-07-10-banner.png"
 header:
   image: "/assets/images/2024/07/2024-07-10-banner.png"
   teaser: "/assets/images/2024/07/2024-07-10-banner.png"

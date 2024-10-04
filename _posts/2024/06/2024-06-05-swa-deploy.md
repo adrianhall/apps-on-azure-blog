@@ -3,6 +3,7 @@ title:  "Build a Blog: Deploy Azure Infrastructure three ways"
 date:   2024-06-05
 categories: infrastructure
 tags: [ bicep, azd, azure, staticwebapps ]
+image: "/assets/images/2024/06/2024-06-05-banner.png"
 header:
   image: "/assets/images/2024/06/2024-06-05-banner.png"
 ---
