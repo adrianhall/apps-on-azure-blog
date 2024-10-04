@@ -2,7 +2,7 @@
 title:  "Build a Blog: Going to production with Azure Static Web Apps"
 date:   2024-06-08
 categories: infrastructure
-tags: [ bicep, azd, azure, staticwebapp ]
+tags: [ bicep, azd, azure, staticwebapps ]
 header:
   image: "/assets/images/2024/06/2024-06-08-banner.png"
 ---
