@@ -34,7 +34,12 @@ Want to skip the article and get right to the sample?  You can find it on [my sa
 
 ## Create a Keycloak resource
 
-[Oleksii Nikiforov] has created a set of NuGet packages for working with Keycloak and Aspire.  I'll be using these packages today.  First, let's set up a Keycloak service for us to use.  Start by adding the [Keycloak.AuthServices.Aspire.Hosting] NuGet package to your AppHost project.  Then, add the following files from the Aspire template that Oleksii provides:
+[Oleksii Nikiforov] has created a set of NuGet packages for working with Keycloak and Aspire.  I'll be using these packages today.  First, let's set up a Keycloak service for us to use.  Start by adding the [Keycloak.AuthServices.Aspire.Hosting] NuGet package to your AppHost project.
+
+> **Duplicate Package Warning**<br/>
+> Since writing this article, the Aspire team has also released a Keycloak integration without a (necessary) method to reference the realm you will create.  Make sure you are using `Keycloak.AuthServices.Aspire.Hosting` as the package if you wish to follow this article.
+
+Then, add the following files from the Aspire template that Oleksii provides:
 
 * [Test-realm.json](https://github.com/NikiforovAll/keycloak-authorization-services-dotnet/blob/main/samples/GettingStartedAndAspire/AppHost/KeycloakConfiguration/Test-realm.json)
 * [Test-users-0.json](https://github.com/NikiforovAll/keycloak-authorization-services-dotnet/blob/main/samples/GettingStartedAndAspire/AppHost/KeycloakConfiguration/Test-users-0.json)
