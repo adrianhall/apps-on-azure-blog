@@ -1,5 +1,5 @@
 ---
-title:  "Introducing the Datasync Community Toolkit - Day 1"
+title:  "Introducing the Datasync Community Toolkit - Day 1: The basic service"
 date:   2024-10-08
 categories: datasync
 tags: [ csharp, aspnetcore, datasync ]
@@ -10,7 +10,7 @@ header:
 mermaid: true
 ---
 
-This article is the first in a series of articles about the [Datasync Community Toolkit][toolkit], which is a set of open source libraries for building client-server applications where the application data is available offline.  Unlike, for example, Firebase or AWS AppSync (which are two competitors in this space), the Datasync Community Toolkit allows you to connect to any database, use any authentication, and provides robust authorization rules.  You implement each side of the application (client and server) using .NET - ASP.NET Core Web APIs on the server side, and any .NET client technology (including WPF, WinUI, and MAUI) on the client side.
+This article is the first in a series of articles about the [Datasync Community Toolkit][toolkit], which is a set of open source libraries for building client-server applications where the application data is available offline.  Unlike, for example, Firebase or AWS AppSync (which are two competitors in this space), the Datasync Community Toolkit allows you to connect to any database, use any authentication, and provides robust authorization rules.  You implement each side of the application (client and server) using .NET - [ASP.NET Core Web APIs](https://learn.microsoft.com/training/modules/build-web-api-aspnet-core/) on the server side, and any .NET client technology (including [WPF](https://wpf-tutorial.com/), [WinUI](https://learn.microsoft.com/windows/apps/winui/winui3/) and [MAUI](https://dotnet.microsoft.com/apps/maui)) on the client side.
 
 ## What's the point of datasync?
 
@@ -93,8 +93,8 @@ Start by cleaning up the project.  Remove the model, http file, and controller o
 cd Sample.WebAPI
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet add package Microsoft.EntityFrameworkCore.Tools
-dotnet add package CommuityToolkit.Datasync.Server
-dotnet add package CommuityToolkit.Datasync.Server.EntityFrameworkCore
+dotnet add package CommunityToolkit.Datasync.Server
+dotnet add package CommunityToolkit.Datasync.Server.EntityFrameworkCore
 ```
 
 Next, let's set up a database.  For this, I'll need a model:
@@ -141,6 +141,7 @@ You'll  also need to deal with creating the database.  I'm not doing this for th
 > **The sample**<br/>
 > You can find [a similar sample](https://github.com/CommunityToolkit/Datasync/tree/main/samples/datasync-server) with the Datasync Community Toolkit.  The official sample also
 > supports deployment via the Azure Developer CLI so you can try it out in the cloud.
+> {: .notice--info}
 
 Next, let's wire in the database into our app:
 
