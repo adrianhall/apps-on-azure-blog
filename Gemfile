@@ -1,11 +1,19 @@
 source "https://rubygems.org"
 
+# No longer bundled with ruby
+gem "csv" 
+gem "ostruct"
+gem "logger"
+
+# Jekyll requirements
 gem "jekyll", "~> 4.3.3"
 gem "classifier-reborn"
-gem "csv" # No longer bundled with ruby
 gem "faraday-retry"
+
+# The theme
 gem "minimal-mistakes-jekyll", "~> 4.26.1"
 
+# Jekyll Plugins
 group :jekyll_plugins do
   gem "jekyll-algolia"
   gem "jekyll-archives"
