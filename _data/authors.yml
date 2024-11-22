@@ -8,9 +8,9 @@ Adrian Hall:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       url: "mailto:photoadrian@outlook.com"
-    - label: "X"
-      icon: "fab fa-fw fa-x-twitter"
-      url: "https://twitter.com/AppsOnAzureBlog"
+    - label: "Bluesky"
+      icon: "fab fa-fw fa-bluesky"
+      url: https://bsky.app/profile/appsonazureblog.bsky.social
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/adrianhall"
