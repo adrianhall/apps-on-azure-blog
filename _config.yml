@@ -84,9 +84,9 @@ author:
   location         : "Woodinville, WA, US"
   email            : &email "photoadrian@outlook.com"
   links:
-    - label: "@AppsOnAzureBlog"
-      icon: "fab fa-fw fa-x-twitter"
-      url: "https://twitter.com/AppsOnAzureBlog"
+    - label: "Bluesky"
+      icon: "fab fa-fw fa-bluesky"
+      url: https://bsky.app/profile/appsonazureblog.bsky.social
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/adrianhall"
@@ -100,9 +100,9 @@ author:
 # Site Footer
 footer:
   links:
-    - label: "@AppsOnAzureBlog"
-      icon: "fab fa-fw fa-x-twitter"
-      url: "https://twitter.com/AppsOnAzureBlog"
+    - label: "Bluesky"
+      icon: "fab fa-fw fa-bluesky"
+      url: https://bsky.app/profile/appsonazureblog.bsky.social
     - label: "Linkedin"
       icon: "fab fa-fw fa-linkedin"
       url: "https://linkedin.com/in/adrianhall1/"
