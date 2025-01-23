@@ -232,6 +232,7 @@ Secondly, many applications require both online and offline capabilities - even 
 Having an online operation allows flexibility in creating my clients.
 
 <!-- Links -->
+[toolkit]: https://github.com/CommunityToolkit/Datasync
 [adrianhall/samples]: https://github.com/adrianhall/samples
 [todoapp-start]: https://github.com/adrianhall/samples/tree/1118/datasync-day5
 [TodoMVC]: https://todomvc.com

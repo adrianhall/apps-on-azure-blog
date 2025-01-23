@@ -192,3 +192,6 @@ The main problem with authentication in datasync is the same as authentication i
 * [Microsoft Identity for Web API](https://learn.microsoft.com/entra/identity-platform/index-web-api)
 * [Microsoft Identity for Desktop](https://learn.microsoft.com/entra/identity-platform/index-desktop)
 * [Microsoft Identity for Mobile](https://learn.microsoft.com/entra/identity-platform/index-mobile)
+
+<!-- Links -->
+[toolkit]: https://github.com/CommunityToolkit/Datasync
